@@ -1,5 +1,8 @@
 # PromoFinder AI
 
+**Live app:** https://promofinder-rb4wbkeye8i8jttfu7ay67.streamlit.app/ (opens on a synthetic demo pack; upload the
+screenplay ZIP in the sidebar to run it on the real pack) · **Code:** https://github.com/Harsh-2005-Bhati/promofinder
+
 Reads a microdrama screenplay ZIP and outputs ranked **20–60 s promo clips** (episode, segment start/end,
 hook, cliffhanger, why-it-works). Hybrid design: **deterministic code owns every timestamp**; an optional
 LLM only re-scores code-generated candidates and may suggest a different *block-index* range, which code
@@ -8,7 +11,7 @@ converts to times and re-validates.
 ## Quick start (Windows, from `E:\promofinder`)
 
 ```powershell
-cd E:\promofinder
+cd E:\promofinder\promofinder
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
@@ -85,15 +88,62 @@ histograms), **Export** (JSON/CSV/review log). Decisions live in `st.session_sta
 3. (Optional) *Advanced settings → Secrets*: `GEMINI_API_KEY = "..."`. Without it the app runs rule-only.
 4. Reviewers upload the ZIP in the sidebar; the public app ships only with the synthetic sample.
 
-## Evaluation (fill from real runs only)
-- Validator pass rate: printed by the CLI / `run_meta.json` (target 100 % on hard checks).
-- Recall proxy: for 10 episodes pick the key logline moment by hand (e.g. altar betrayal ep 1, briars ep 13,
-  fire ep 18, duke reveal ep 42) and check whether a top-3 promo of that episode overlaps it.
-- Precision proxy: approve/reject the global top 20 in the UI → approve rate in the Quality tab; export
-  `review_log.csv` for the reason tags.
-- Rules vs LLM: overlap@20 between `outputs/promos.csv` and `outputs/llm_<provider>/promos.csv` (compare
-  `segments` of the top 20).
-- Copy failure cases verbatim from the flagged rows / rejected reviews.
+## Results on the real pack (rule-based, `--llm none`)
+All numbers below come from `outputs/run_meta.json`, `outputs/promos.csv` and `outputs/review_log.csv`
+(unedited). The run is deterministic: re-running the CLI on the same ZIP reproduces `promos.csv` byte for byte.
+
+| metric | value |
+|---|---|
+| Episodes parsed | **50 / 50** (0 files failed) |
+| Blocks parsed | **3,727** (1,754 CAMERA + 1,487 DIALOGUE + 372 ACTION + 114 SOUND FX, matches the audit) |
+| Total runtime | 6,162.6 s (≈103 min) |
+| Parse warnings | 15: overlapping dialogue pairs and out-of-order blocks, all known quirks, all handled |
+| Candidate windows (20–60 s) | **16,167** |
+| Promos kept (NMS + top 5/episode) | **196** (some short episodes have <5 sufficiently distinct windows) |
+| Validator pass rate, single-segment | **196 / 196 = 100 %** |
+| Validator pass rate, cold-open (2-segment) | **40 / 40 = 100 %** |
+| Top-20 diversity | 20 different episodes |
+| Pipeline run time | ≈18 s for the full pack (rule-based, no API calls) |
+
+### Precision proxy: top-20 review
+The global top 20 were reviewed in the app (Approve / Reject + reason tag; log in `outputs/review_log.csv`).
+Decisions were drafted by Claude after reading each clip's full script and checked by me.
+
+**Approved 11 / 20 = 55 %.** Rejections: weak cliffhanger 3, weak hook 2, missing context 2, spoiler 2.
+
+### Recall proxy: key logline moments
+For the four episodes the blueprint names, a top-3 promo of that episode overlaps the key moment in all four
+cases (4 / 4): altar betrayal ep 1 (E001-P1, #3 overall, contains "I changed my mind."), briars ep 13
+(E013-P1, #16), fire ep 18 (E018-P2), duke proclamation ep 42 (E042-P1, #15). The planned 10-episode check
+was cut to these 4 for time.
+
+### Failure cases (verbatim, from the reviewed top 20)
+1. **Spoilers score highly.** E045-P1 (#4) opens on *"You're the Duke?"*; E042-P1 (#15) ends on the
+   proclamation *"This is my son… The rightful Duke of Ashburn!"*. Reveal lines contain the strongest
+   shock/reveal words, and the rules have no notion of where an episode sits in the series arc.
+2. **Fake cliffhangers.** E025-P1 (#10) ends on *"Alexander turns, falling into step beside Juliana…"*;
+   E016-P1 (#14) ends on a tender look plus an SFX line that literally says "cliffhanger hold", even though
+   the actual twist (*"Gerald Harrington paid us!"*) is mid-clip. The SFX lexicon rewards "swell" regardless
+   of what the scene is doing; E007-P1 (#12) ends on the villains simply leaving.
+3. **Mid-conversation openers.** E035-P1 (#2) *"A traitor?"*, E043-P1 (#9) *"We will not."*, E038-P1
+   (#18) *"Why?"*. Short replies aren't detected as needing context; the standalone check only catches a
+   question just before the window and conjunction/pronoun openers.
+4. **Cut just after the inciting beat.** E024-P1 (#20) starts on Juliana's reaction to a strike that happens
+   just before the window.
+5. **Fixed during review:** E003-P1 originally opened on *"...and it isn't you."*; the leading ellipsis hid
+   the "and" opener from the standalone penalty. Stripping leading `.…-—` fixed it; the promo now opens on
+   *"You have humiliated this family enough for one day."*
+
+### What I'd do next
+- Run the LLM judge (`--llm gemini`) and report overlap@20 against the rule-based top 20. Failure types 1–3
+  are judgement calls the rules cannot make, and the prompt already asks the model to avoid spoilers.
+- Add a "spoiler" feature (penalise reveal lines in the last ~20 % of the series or matching later loglines).
+- Score the cliffhanger on the last *dialogue or action* line, not on SFX labels.
+
+### How to reproduce / extend the evaluation
+- Validator pass rate: printed by the CLI and stored in `run_meta.json`.
+- Precision proxy: approve/reject the top 20 in the UI → Quality tab → export `review_log.csv`.
+- Rules vs LLM: overlap@20 between `outputs/promos.csv` and `outputs/llm_<provider>/promos.csv`.
 
 ## Assumptions
 - Candidate start points are DIALOGUE/ACTION block starts only (never CAMERA/SFX), so a line or action is
@@ -113,8 +163,12 @@ histograms), **Export** (JSON/CSV/review log). Decisions live in `st.session_sta
   check are discarded (`llm_adjust_discarded`) and the original window is kept.
 - LLM providers are called over plain HTTPS (urllib) so no vendor SDK is needed; default model names may
   need updating via env vars.
-- Development and tests used a synthetic pack (`tests/make_fixture.py`) that reproduces the audited
-  format and quirks; the real pack was not available in the build environment.
+- Development and unit tests use a synthetic pack (`tests/make_fixture.py`) that reproduces the audited
+  format and quirks, so the public repo and the deployed app contain no Kuku data. The real pack was run
+  locally; only its outputs are committed.
+- `EPISODE NUMBER: Episode 1` and `EPISODE NUMBER: 1` are both accepted; if the header is missing the number
+  is taken from the file name (`episode-001-…`).
+- The hosted app never stores uploads; an uploaded ZIP lives only in that browser session's memory.
 
 ## Layout
 ```
