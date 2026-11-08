@@ -1,0 +1,121 @@
+"""Combine heuristic (+ optional LLM) scores, NMS dedupe, per-episode top-K, global ranking with diversity."""
+from __future__ import annotations
+
+from . import features
+from .candidates import generate, segment_from_indices
+from .models import Promo, Segment
+from .parser import Episode, fmt
+from .validate import validate, HARD_CHECKS
+
+WEIGHTS = {"hook": 0.35, "cliffhanger": 0.35, "standalone": 0.20, "density": 0.10}
+TOP_PER_EP = 5
+NMS_OVERLAP = 0.5
+TOP_N_DIVERSE = 20
+MAX_PER_EP_TOP = 2
+
+
+def total(scores: dict) -> float:
+    return round(sum(WEIGHTS[k] * scores[k] for k in WEIGHTS), 4)
+
+
+def why_text(feat: dict) -> str:
+    r = feat["reasons"]
+    parts = []
+    if r["hook"]:
+        parts.append("Hook: " + "; ".join(r["hook"]))
+    if r["cliffhanger"]:
+        parts.append("Cliffhanger: " + "; ".join(r["cliffhanger"]))
+    sw = [x for x in r["standalone"] if x != "base 0.6"]
+    if sw:
+        parts.append("Context: " + "; ".join(sw))
+    return " | ".join(parts) or "No strong signals."
+
+
+def overlap_frac(a: Segment, b: Segment) -> float:
+    if a.ep != b.ep:
+        return 0.0
+    inter = max(0.0, min(a.end, b.end) - max(a.start, b.start))
+    return inter / max(min(a.end - a.start, b.end - b.start), 1e-6)
+
+
+def nms(promos: list[Promo], k: int = TOP_PER_EP, thr: float = NMS_OVERLAP) -> list[Promo]:
+    keep: list[Promo] = []
+    for p in sorted(promos, key=lambda p: -p.total):
+        if all(overlap_frac(p.segments[0], q.segments[0]) <= thr for q in keep):
+            keep.append(p)
+        if len(keep) >= k:
+            break
+    return keep
+
+
+def make_promo(ep: Episode, seg: Segment, pid: str) -> Promo:
+    f = features.compute(ep, seg)
+    sc = {k: f[k] for k in WEIGHTS}
+    return Promo(id=pid, segments=[seg], duration=seg.duration, hook_text=f["hook_text"],
+                 cliffhanger_text=f["cliffhanger_text"], why=why_text(f), scores=dict(sc), total=total(sc),
+                 heuristic=dict(sc, reasons=f["reasons"]))
+
+
+def episode_candidates(ep: Episode) -> tuple[list[Promo], int]:
+    segs = generate(ep)
+    promos = [make_promo(ep, s, f"E{ep.num:03d}-c{i}") for i, s in enumerate(segs)]
+    top = nms(promos)
+    for r, p in enumerate(top, 1):
+        p.id = f"E{ep.num:03d}-P{r}"
+    return top, len(segs)
+
+
+def apply_llm(ep: Episode, promo: Promo, j: dict) -> None:
+    """Merge a validated LLM judgement. LLM gives only block indices; code converts to times."""
+    promo.llm = dict(j)
+    adj = j.get("adjust")
+    if adj:
+        seg = segment_from_indices(ep, int(adj["first_idx"]), int(adj["last_idx"]))
+        old = promo.segments
+        if seg is not None:
+            promo.segments = [seg]
+            hard = [f for f in validate(promo, {ep.num: ep}) if f in HARD_CHECKS]
+            if hard:
+                promo.segments = old
+                promo.flags.append("llm_adjust_discarded")
+            else:
+                promo.duration = seg.duration
+                promo.flags.append("llm_adjusted")
+                f = features.compute(ep, seg)
+                promo.heuristic = dict({k: f[k] for k in WEIGHTS}, reasons=f["reasons"])
+        else:
+            promo.flags.append("llm_adjust_discarded")
+    to01 = lambda v: round((max(1, min(5, int(v))) - 1) / 4, 3)  # noqa: E731
+    sc = {"hook": to01(j["hook_score"]), "cliffhanger": to01(j["cliffhanger_score"]),
+          "standalone": to01(j["standalone_score"]), "density": promo.heuristic["density"]}
+    promo.scores = sc
+    promo.total = total(sc)
+    if j.get("hook_text"):
+        promo.hook_text = j["hook_text"]
+    if j.get("cliffhanger_text"):
+        promo.cliffhanger_text = j["cliffhanger_text"]
+    if j.get("why"):
+        promo.why = j["why"]
+
+
+def rank(promos: list[Promo]) -> list[Promo]:
+    """Sort by total; top-20 contains at most 2 promos per episode; rest follow by score."""
+    ordered = sorted(promos, key=lambda p: (-p.total, p.ep, p.segments[0].start))
+    top, rest, per = [], [], {}
+    for p in ordered:
+        if len(top) < TOP_N_DIVERSE and per.get(p.ep, 0) < MAX_PER_EP_TOP:
+            top.append(p)
+            per[p.ep] = per.get(p.ep, 0) + 1
+        else:
+            rest.append(p)
+    out = top + rest
+    for i, p in enumerate(out, 1):
+        p.rank = i
+        p.post_first = i <= 10
+    return out
+
+
+def post_first_reason(p: Promo) -> str:
+    s = p.segments[0]
+    return (f"#{p.rank} ep {p.ep} {fmt(s.start)}-{fmt(s.end)} ({p.duration:.1f}s) total {p.total:.2f} "
+            f"[hook {p.scores['hook']:.2f}, cliff {p.scores['cliffhanger']:.2f}]")

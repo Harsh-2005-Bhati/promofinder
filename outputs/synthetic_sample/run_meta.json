@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-11-08T09:03:50",
+  "provider": "none",
+  "model": null,
+  "weights": {
+    "hook": 0.35,
+    "cliffhanger": 0.35,
+    "standalone": 0.2,
+    "density": 0.1
+  },
+  "episodes_parsed": 8,
+  "blocks": 197,
+  "total_runtime_s": 689.74,
+  "candidates_generated": 723,
+  "promos_kept": 29,
+  "cold_open_promos": 7,
+  "validator_pass": 29,
+  "validator_pass_rate": 1.0,
+  "cold_open_pass_rate": 1.0,
+  "global_warnings": [],
+  "episode_warnings": {
+    "2": [
+      "1 block(s) out of order in file; sorted by start time"
+    ]
+  },
+  "llm": null,
+  "elapsed_s": 0.3
+}

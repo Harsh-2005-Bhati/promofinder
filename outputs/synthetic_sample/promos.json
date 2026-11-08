@@ -1,0 +1,2214 @@
+{
+  "meta": {
+    "timestamp": "2026-11-08T09:03:50",
+    "provider": "none",
+    "model": null,
+    "weights": {
+      "hook": 0.35,
+      "cliffhanger": 0.35,
+      "standalone": 0.2,
+      "density": 0.1
+    },
+    "episodes_parsed": 8,
+    "blocks": 197,
+    "total_runtime_s": 689.74,
+    "candidates_generated": 723,
+    "promos_kept": 29,
+    "cold_open_promos": 7,
+    "validator_pass": 29,
+    "validator_pass_rate": 1.0,
+    "cold_open_pass_rate": 1.0,
+    "global_warnings": [],
+    "episode_warnings": {
+      "2": [
+        "1 block(s) out of order in file; sorted by start time"
+      ]
+    },
+    "llm": null,
+    "elapsed_s": 0.3
+  },
+  "promos": [
+    {
+      "id": "E003-P1",
+      "segments": [
+        {
+          "ep": 3,
+          "start": 11.92,
+          "end": 65.83,
+          "first_idx": 4,
+          "last_idx": 18,
+          "start_ts": "00:11.92",
+          "end_ts": "01:05.83",
+          "duration": 53.91
+        }
+      ],
+      "duration": 53.91,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Tomorrow at dawn, the whole kingdom will know who you really are.\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: slap, how dare, gasp; intense emotion: outraged | Cliffhanger: threat/ultimatum: tomorrow; reveal: who you really; SFX/visual swell: thunder | Context: 4 characters in conflict",
+      "scores": {
+        "hook": 1.0,
+        "cliffhanger": 0.7,
+        "standalone": 0.9,
+        "density": 0.65
+      },
+      "total": 0.84,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 1.0,
+        "cliffhanger": 0.7,
+        "standalone": 0.9,
+        "density": 0.65,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: slap, how dare, gasp",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: tomorrow",
+            "reveal: who you really",
+            "SFX/visual swell: thunder"
+          ],
+          "standalone": [
+            "base 0.6",
+            "4 characters in conflict"
+          ],
+          "density": [
+            "9 lines / 54 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 1,
+      "post_first": true
+    },
+    {
+      "id": "E006-P1",
+      "segments": [
+        {
+          "ep": 6,
+          "start": 52.6,
+          "end": 80.94,
+          "first_idx": 13,
+          "last_idx": 20,
+          "start_ts": "00:52.60",
+          "end_ts": "01:20.94",
+          "duration": 28.34
+        }
+      ],
+      "duration": 28.34,
+      "hook_text": "\"Never! Not while I still breathe!\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: chain, prison, guards; intense emotion: screaming | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 2 characters in conflict; starts at scene start",
+      "scores": {
+        "hook": 1.0,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.612
+      },
+      "total": 0.8037,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 1.0,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.612,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: chain, prison, guards",
+            "intense emotion: screaming"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict",
+            "starts at scene start"
+          ],
+          "density": [
+            "4 lines / 28 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 2,
+      "post_first": true
+    },
+    {
+      "id": "E007-P1",
+      "segments": [
+        {
+          "ep": 7,
+          "start": 42.87,
+          "end": 66.51,
+          "first_idx": 12,
+          "last_idx": 17,
+          "start_ts": "00:42.87",
+          "end_ts": "01:06.51",
+          "duration": 23.64
+        }
+      ],
+      "duration": 23.64,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: slap, how dare, gasp; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 2 characters in conflict; starts at scene start",
+      "scores": {
+        "hook": 1.0,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.59
+      },
+      "total": 0.8015,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 1.0,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.59,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: slap, how dare, gasp",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict",
+            "starts at scene start"
+          ],
+          "density": [
+            "3 lines / 24 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 3,
+      "post_first": true
+    },
+    {
+      "id": "E002-P1",
+      "segments": [
+        {
+          "ep": 2,
+          "start": 34.58,
+          "end": 69.24,
+          "first_idx": 10,
+          "last_idx": 20,
+          "start_ts": "00:34.58",
+          "end_ts": "01:09.24",
+          "duration": 34.66
+        }
+      ],
+      "duration": 34.66,
+      "hook_text": "\"Never! Not while I still breathe!\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: chain, prison, guards; intense emotion: screaming | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 3 characters in conflict",
+      "scores": {
+        "hook": 1.0,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.703
+      },
+      "total": 0.7928,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 1.0,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.703,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: chain, prison, guards",
+            "intense emotion: screaming"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "7 lines / 35 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 4,
+      "post_first": true
+    },
+    {
+      "id": "E008-P1",
+      "segments": [
+        {
+          "ep": 8,
+          "start": 43.08,
+          "end": 65.25,
+          "first_idx": 12,
+          "last_idx": 18,
+          "start_ts": "00:43.08",
+          "end_ts": "01:05.25",
+          "duration": 22.17
+        }
+      ],
+      "duration": 22.17,
+      "hook_text": "\"Sister... he knows the truth about our father.\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: desperate | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 3 characters in conflict; starts at scene start",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.671
+      },
+      "total": 0.7921,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.671,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: how dare",
+            "intense emotion: desperate"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "3 characters in conflict",
+            "starts at scene start"
+          ],
+          "density": [
+            "4 lines / 22 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 5,
+      "post_first": true
+    },
+    {
+      "id": "E002-P2",
+      "segments": [
+        {
+          "ep": 2,
+          "start": 2.31,
+          "end": 46.46,
+          "first_idx": 1,
+          "last_idx": 13,
+          "start_ts": "00:02.31",
+          "end_ts": "00:46.46",
+          "duration": 44.15
+        }
+      ],
+      "duration": 44.15,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"What truth? Edric, what did you do to him?\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: slap, how dare, gasp; intense emotion: outraged | Cliffhanger: ends on a question; reveal: truth | Context: 4 characters in conflict",
+      "scores": {
+        "hook": 1.0,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.672
+      },
+      "total": 0.7897,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 1.0,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.672,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: slap, how dare, gasp",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "ends on a question",
+            "reveal: truth"
+          ],
+          "standalone": [
+            "base 0.6",
+            "4 characters in conflict"
+          ],
+          "density": [
+            "8 lines / 44 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 6,
+      "post_first": true
+    },
+    {
+      "id": "E004-P1",
+      "segments": [
+        {
+          "ep": 4,
+          "start": 35.67,
+          "end": 59.55,
+          "first_idx": 11,
+          "last_idx": 16,
+          "start_ts": "00:35.67",
+          "end_ts": "00:59.55",
+          "duration": 23.88
+        }
+      ],
+      "duration": 23.88,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 2 characters in conflict; starts at scene start",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.588
+      },
+      "total": 0.7838,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.588,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: how dare",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict",
+            "starts at scene start"
+          ],
+          "density": [
+            "3 lines / 24 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 7,
+      "post_first": true
+    },
+    {
+      "id": "E001-P1",
+      "segments": [
+        {
+          "ep": 1,
+          "start": 3.33,
+          "end": 59.56,
+          "first_idx": 1,
+          "last_idx": 17,
+          "start_ts": "00:03.33",
+          "end_ts": "00:59.56",
+          "duration": 56.23
+        }
+      ],
+      "duration": 56.23,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 3 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.64
+      },
+      "total": 0.769,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.64,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: how dare",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "9 lines / 56 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 8,
+      "post_first": true
+    },
+    {
+      "id": "E005-P1",
+      "segments": [
+        {
+          "ep": 5,
+          "start": 42.76,
+          "end": 64.16,
+          "first_idx": 13,
+          "last_idx": 18,
+          "start_ts": "00:42.76",
+          "end_ts": "01:04.16",
+          "duration": 21.4
+        }
+      ],
+      "duration": 21.4,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 2 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.61
+      },
+      "total": 0.766,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.61,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: how dare",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict"
+          ],
+          "density": [
+            "3 lines / 21 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 9,
+      "post_first": true
+    },
+    {
+      "id": "E007-P2",
+      "segments": [
+        {
+          "ep": 7,
+          "start": 2.39,
+          "end": 23.96,
+          "first_idx": 1,
+          "last_idx": 6,
+          "start_ts": "00:02.39",
+          "end_ts": "00:23.96",
+          "duration": 21.57
+        }
+      ],
+      "duration": 21.57,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 2 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.609
+      },
+      "total": 0.7659,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.609,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: how dare",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict"
+          ],
+          "density": [
+            "3 lines / 22 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 10,
+      "post_first": true
+    },
+    {
+      "id": "E003-P2",
+      "segments": [
+        {
+          "ep": 3,
+          "start": 65.83,
+          "end": 87.66,
+          "first_idx": 19,
+          "last_idx": 24,
+          "start_ts": "01:05.83",
+          "end_ts": "01:27.66",
+          "duration": 21.83
+        }
+      ],
+      "duration": 21.83,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 2 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.606
+      },
+      "total": 0.7656,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.606,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: how dare",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict"
+          ],
+          "density": [
+            "3 lines / 22 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 11,
+      "post_first": false
+    },
+    {
+      "id": "E008-P2",
+      "segments": [
+        {
+          "ep": 8,
+          "start": 3.83,
+          "end": 26.9,
+          "first_idx": 1,
+          "last_idx": 6,
+          "start_ts": "00:03.83",
+          "end_ts": "00:26.90",
+          "duration": 23.07
+        }
+      ],
+      "duration": 23.07,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 2 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.595
+      },
+      "total": 0.7645,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.595,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: how dare",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict"
+          ],
+          "density": [
+            "3 lines / 23 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 12,
+      "post_first": false
+    },
+    {
+      "id": "E006-P2",
+      "segments": [
+        {
+          "ep": 6,
+          "start": 17.31,
+          "end": 40.48,
+          "first_idx": 4,
+          "last_idx": 9,
+          "start_ts": "00:17.31",
+          "end_ts": "00:40.48",
+          "duration": 23.17
+        }
+      ],
+      "duration": 23.17,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 2 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.594
+      },
+      "total": 0.7644,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.594,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: how dare",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict"
+          ],
+          "density": [
+            "3 lines / 23 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 13,
+      "post_first": false
+    },
+    {
+      "id": "E005-P2",
+      "segments": [
+        {
+          "ep": 5,
+          "start": 2.33,
+          "end": 24.76,
+          "first_idx": 1,
+          "last_idx": 7,
+          "start_ts": "00:02.33",
+          "end_ts": "00:24.76",
+          "duration": 22.43
+        }
+      ],
+      "duration": 22.43,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"My lady, the duke's guards are at the gate.\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: slap, how dare, gasp; intense emotion: outraged | Cliffhanger: reveal: the duke; SFX/visual swell: swell | Context: 3 characters in conflict",
+      "scores": {
+        "hook": 1.0,
+        "cliffhanger": 0.45,
+        "standalone": 0.9,
+        "density": 0.667
+      },
+      "total": 0.7542,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 1.0,
+        "cliffhanger": 0.45,
+        "standalone": 0.9,
+        "density": 0.667,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: slap, how dare, gasp",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "reveal: the duke",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "4 lines / 22 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 14,
+      "post_first": false
+    },
+    {
+      "id": "E004-P2",
+      "segments": [
+        {
+          "ep": 4,
+          "start": 2.4,
+          "end": 25.48,
+          "first_idx": 1,
+          "last_idx": 7,
+          "start_ts": "00:02.40",
+          "end_ts": "00:25.48",
+          "duration": 23.08
+        }
+      ],
+      "duration": 23.08,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"My lady, the duke's guards are at the gate.\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: reveal: the duke; SFX/visual swell: swell | Context: 3 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.45,
+        "standalone": 0.9,
+        "density": 0.66
+      },
+      "total": 0.736,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.45,
+        "standalone": 0.9,
+        "density": 0.66,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: how dare",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "reveal: the duke",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "4 lines / 23 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 15,
+      "post_first": false
+    },
+    {
+      "id": "E003-P3",
+      "segments": [
+        {
+          "ep": 3,
+          "start": 81.63,
+          "end": 109.16,
+          "first_idx": 23,
+          "last_idx": 30,
+          "start_ts": "01:21.63",
+          "end_ts": "01:49.16",
+          "duration": 27.53
+        }
+      ],
+      "duration": 27.53,
+      "hook_text": "\"Then I will burn it, and your name with it!\"",
+      "cliffhanger_text": "\"Sister... he knows the truth about our father.\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: reveal: truth; ends at episode end | Context: first line opens with conjunction/yes/no; 4 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.5,
+        "standalone": 0.65,
+        "density": 0.672
+      },
+      "total": 0.7047,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.5,
+        "standalone": 0.65,
+        "density": 0.672,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: burn",
+            "intense emotion: defiant"
+          ],
+          "cliffhanger": [
+            "reveal: truth",
+            "ends at episode end"
+          ],
+          "standalone": [
+            "base 0.6",
+            "first line opens with conjunction/yes/no",
+            "4 characters in conflict"
+          ],
+          "density": [
+            "5 lines / 28 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 16,
+      "post_first": false
+    },
+    {
+      "id": "E007-P3",
+      "segments": [
+        {
+          "ep": 7,
+          "start": 66.51,
+          "end": 87.36,
+          "first_idx": 18,
+          "last_idx": 23,
+          "start_ts": "01:06.51",
+          "end_ts": "01:27.36",
+          "duration": 20.85
+        }
+      ],
+      "duration": 20.85,
+      "hook_text": "\"My lady, the duke's guards are at the gate.\"",
+      "cliffhanger_text": "\"Sister... he knows the truth about our father.\"",
+      "why": "Hook: line within 1 s; shock words: duke, guards; intense emotion: fearful | Cliffhanger: reveal: truth; ends at episode end | Context: 4 characters in conflict",
+      "scores": {
+        "hook": 0.8,
+        "cliffhanger": 0.5,
+        "standalone": 0.9,
+        "density": 0.688
+      },
+      "total": 0.7038,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.8,
+        "cliffhanger": 0.5,
+        "standalone": 0.9,
+        "density": 0.688,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "shock words: duke, guards",
+            "intense emotion: fearful"
+          ],
+          "cliffhanger": [
+            "reveal: truth",
+            "ends at episode end"
+          ],
+          "standalone": [
+            "base 0.6",
+            "4 characters in conflict"
+          ],
+          "density": [
+            "4 lines / 21 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 17,
+      "post_first": false
+    },
+    {
+      "id": "E004-P3",
+      "segments": [
+        {
+          "ep": 4,
+          "start": 15.61,
+          "end": 35.67,
+          "first_idx": 5,
+          "last_idx": 10,
+          "start_ts": "00:15.61",
+          "end_ts": "00:35.67",
+          "duration": 20.06
+        }
+      ],
+      "duration": 20.06,
+      "hook_text": "\"Then I will burn it, and your name with it!\"",
+      "cliffhanger_text": "\"Never! Not while I still breathe!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: threat/ultimatum: never; ends on exclamation | Context: first line opens with conjunction/yes/no; 3 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.35,
+        "standalone": 0.65,
+        "density": 0.699
+      },
+      "total": 0.6549,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.35,
+        "standalone": 0.65,
+        "density": 0.699,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: burn",
+            "intense emotion: defiant"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: never",
+            "ends on exclamation"
+          ],
+          "standalone": [
+            "base 0.6",
+            "first line opens with conjunction/yes/no",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "4 lines / 20 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 18,
+      "post_first": false
+    },
+    {
+      "id": "E008-P3",
+      "segments": [
+        {
+          "ep": 8,
+          "start": 18.32,
+          "end": 38.76,
+          "first_idx": 5,
+          "last_idx": 11,
+          "start_ts": "00:18.32",
+          "end_ts": "00:38.76",
+          "duration": 20.44
+        }
+      ],
+      "duration": 20.44,
+      "hook_text": "\"Then I will burn it, and your name with it!\"",
+      "cliffhanger_text": "\"Never! Not while I still breathe!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: threat/ultimatum: never; ends on exclamation | Context: first line opens with conjunction/yes/no; 3 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.35,
+        "standalone": 0.65,
+        "density": 0.694
+      },
+      "total": 0.6544,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.35,
+        "standalone": 0.65,
+        "density": 0.694,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: burn",
+            "intense emotion: defiant"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: never",
+            "ends on exclamation"
+          ],
+          "standalone": [
+            "base 0.6",
+            "first line opens with conjunction/yes/no",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "4 lines / 20 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 19,
+      "post_first": false
+    },
+    {
+      "id": "E005-P3",
+      "segments": [
+        {
+          "ep": 5,
+          "start": 16.8,
+          "end": 37.25,
+          "first_idx": 5,
+          "last_idx": 11,
+          "start_ts": "00:16.80",
+          "end_ts": "00:37.25",
+          "duration": 20.45
+        }
+      ],
+      "duration": 20.45,
+      "hook_text": "\"Then I will burn it, and your name with it!\"",
+      "cliffhanger_text": "\"Never! Not while I still breathe!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: threat/ultimatum: never; ends on exclamation | Context: first line opens with conjunction/yes/no; 3 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.35,
+        "standalone": 0.65,
+        "density": 0.693
+      },
+      "total": 0.6543,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.35,
+        "standalone": 0.65,
+        "density": 0.693,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: burn",
+            "intense emotion: defiant"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: never",
+            "ends on exclamation"
+          ],
+          "standalone": [
+            "base 0.6",
+            "first line opens with conjunction/yes/no",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "4 lines / 20 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 20,
+      "post_first": false
+    },
+    {
+      "id": "E007-P4",
+      "segments": [
+        {
+          "ep": 7,
+          "start": 17.22,
+          "end": 39.04,
+          "first_idx": 5,
+          "last_idx": 11,
+          "start_ts": "00:17.22",
+          "end_ts": "00:39.04",
+          "duration": 21.82
+        }
+      ],
+      "duration": 21.82,
+      "hook_text": "\"Then I will burn it, and your name with it!\"",
+      "cliffhanger_text": "\"Never! Not while I still breathe!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: threat/ultimatum: never; ends on exclamation | Context: first line opens with conjunction/yes/no; 3 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.35,
+        "standalone": 0.65,
+        "density": 0.675
+      },
+      "total": 0.6525,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.35,
+        "standalone": 0.65,
+        "density": 0.675,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: burn",
+            "intense emotion: defiant"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: never",
+            "ends on exclamation"
+          ],
+          "standalone": [
+            "base 0.6",
+            "first line opens with conjunction/yes/no",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "4 lines / 22 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 21,
+      "post_first": false
+    },
+    {
+      "id": "E006-P3",
+      "segments": [
+        {
+          "ep": 6,
+          "start": 33.35,
+          "end": 55.49,
+          "first_idx": 8,
+          "last_idx": 14,
+          "start_ts": "00:33.35",
+          "end_ts": "00:55.49",
+          "duration": 22.14
+        }
+      ],
+      "duration": 22.14,
+      "hook_text": "\"Then I will burn it, and your name with it!\"",
+      "cliffhanger_text": "\"Never! Not while I still breathe!\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: threat/ultimatum: never; ends on exclamation | Context: first line opens with conjunction/yes/no; 3 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.35,
+        "standalone": 0.65,
+        "density": 0.671
+      },
+      "total": 0.6521,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.35,
+        "standalone": 0.65,
+        "density": 0.671,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: burn",
+            "intense emotion: defiant"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: never",
+            "ends on exclamation"
+          ],
+          "standalone": [
+            "base 0.6",
+            "first line opens with conjunction/yes/no",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "4 lines / 22 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 22,
+      "post_first": false
+    },
+    {
+      "id": "E002-P3",
+      "segments": [
+        {
+          "ep": 2,
+          "start": 63.21,
+          "end": 86.24,
+          "first_idx": 19,
+          "last_idx": 26,
+          "start_ts": "01:03.21",
+          "end_ts": "01:26.24",
+          "duration": 23.03
+        }
+      ],
+      "duration": 23.03,
+      "hook_text": "\"Then I will burn it, and your name with it!\"",
+      "cliffhanger_text": "\"It's over, sister. Rest.\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: resolution words: it's over; SFX/visual swell: sting; ends at episode end | Context: first line opens with conjunction/yes/no; 4 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.05,
+        "standalone": 0.65,
+        "density": 0.566
+      },
+      "total": 0.5366,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.05,
+        "standalone": 0.65,
+        "density": 0.566,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: burn",
+            "intense emotion: defiant"
+          ],
+          "cliffhanger": [
+            "resolution words: it's over",
+            "SFX/visual swell: sting",
+            "ends at episode end"
+          ],
+          "standalone": [
+            "base 0.6",
+            "first line opens with conjunction/yes/no",
+            "4 characters in conflict"
+          ],
+          "density": [
+            "5 lines / 23 s",
+            "60% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 23,
+      "post_first": false
+    },
+    {
+      "id": "E004-P4",
+      "segments": [
+        {
+          "ep": 4,
+          "start": 51.83,
+          "end": 71.93,
+          "first_idx": 15,
+          "last_idx": 20,
+          "start_ts": "00:51.83",
+          "end_ts": "01:11.93",
+          "duration": 20.1
+        }
+      ],
+      "duration": 20.1,
+      "hook_text": "\"Then I will burn it, and your name with it!\"",
+      "cliffhanger_text": "\"Thank you. We are safe now.\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: resolution words: thank you | Context: first line opens with conjunction/yes/no; 3 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.0,
+        "standalone": 0.65,
+        "density": 0.599
+      },
+      "total": 0.5224,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.0,
+        "standalone": 0.65,
+        "density": 0.599,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: burn",
+            "intense emotion: defiant"
+          ],
+          "cliffhanger": [
+            "resolution words: thank you"
+          ],
+          "standalone": [
+            "base 0.6",
+            "first line opens with conjunction/yes/no",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "4 lines / 20 s",
+            "75% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 24,
+      "post_first": false
+    },
+    {
+      "id": "E008-P4",
+      "segments": [
+        {
+          "ep": 8,
+          "start": 58.57,
+          "end": 81.7,
+          "first_idx": 17,
+          "last_idx": 22,
+          "start_ts": "00:58.57",
+          "end_ts": "01:21.70",
+          "duration": 23.13
+        }
+      ],
+      "duration": 23.13,
+      "hook_text": "\"Then I will burn it, and your name with it!\"",
+      "cliffhanger_text": "\"Thank you. We are safe now.\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: resolution words: thank you | Context: first line opens with conjunction/yes/no; 3 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.0,
+        "standalone": 0.65,
+        "density": 0.559
+      },
+      "total": 0.5184,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.0,
+        "standalone": 0.65,
+        "density": 0.559,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: burn",
+            "intense emotion: defiant"
+          ],
+          "cliffhanger": [
+            "resolution words: thank you"
+          ],
+          "standalone": [
+            "base 0.6",
+            "first line opens with conjunction/yes/no",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "4 lines / 23 s",
+            "75% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 25,
+      "post_first": false
+    },
+    {
+      "id": "E006-P4",
+      "segments": [
+        {
+          "ep": 6,
+          "start": 71.6,
+          "end": 95.19,
+          "first_idx": 19,
+          "last_idx": 24,
+          "start_ts": "01:11.60",
+          "end_ts": "01:35.19",
+          "duration": 23.59
+        }
+      ],
+      "duration": 23.59,
+      "hook_text": "\"Then I will burn it, and your name with it!\"",
+      "cliffhanger_text": "\"Thank you. We are safe now.\"",
+      "why": "Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: resolution words: thank you | Context: first line opens with conjunction/yes/no; 3 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.0,
+        "standalone": 0.65,
+        "density": 0.554
+      },
+      "total": 0.5179,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.0,
+        "standalone": 0.65,
+        "density": 0.554,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: burn",
+            "intense emotion: defiant"
+          ],
+          "cliffhanger": [
+            "resolution words: thank you"
+          ],
+          "standalone": [
+            "base 0.6",
+            "first line opens with conjunction/yes/no",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "4 lines / 24 s",
+            "75% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 26,
+      "post_first": false
+    },
+    {
+      "id": "E008-P5",
+      "segments": [
+        {
+          "ep": 8,
+          "start": 29.21,
+          "end": 51.3,
+          "first_idx": 8,
+          "last_idx": 14,
+          "start_ts": "00:29.21",
+          "end_ts": "00:51.30",
+          "duration": 22.09
+        }
+      ],
+      "duration": 22.09,
+      "hook_text": "\"Kneel, and I may let your brother live.\"",
+      "cliffhanger_text": "Mira slaps Edric across the face. The guests gasp.",
+      "why": "Hook: line within 1 s; shock words: kneel; intense emotion: smirking | Context: 3 characters in conflict",
+      "scores": {
+        "hook": 0.75,
+        "cliffhanger": 0.0,
+        "standalone": 0.9,
+        "density": 0.672
+      },
+      "total": 0.5097,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.75,
+        "cliffhanger": 0.0,
+        "standalone": 0.9,
+        "density": 0.672,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "shock words: kneel",
+            "intense emotion: smirking"
+          ],
+          "cliffhanger": [],
+          "standalone": [
+            "base 0.6",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "4 lines / 22 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 27,
+      "post_first": false
+    },
+    {
+      "id": "E006-P5",
+      "segments": [
+        {
+          "ep": 6,
+          "start": 0.0,
+          "end": 22.15,
+          "first_idx": 0,
+          "last_idx": 5,
+          "start_ts": "00:00.00",
+          "end_ts": "00:22.15",
+          "duration": 22.15
+        }
+      ],
+      "duration": 22.15,
+      "hook_text": "\"Thank you. We are safe now.\"",
+      "cliffhanger_text": "\"How dare you stand at this altar after what you did?\"",
+      "why": "Hook: line within 1 s | Cliffhanger: ends on a question | Context: 2 characters in conflict; starts at scene start",
+      "scores": {
+        "hook": 0.35,
+        "cliffhanger": 0.3,
+        "standalone": 1.0,
+        "density": 0.336
+      },
+      "total": 0.4611,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.35,
+        "cliffhanger": 0.3,
+        "standalone": 1.0,
+        "density": 0.336,
+        "reasons": {
+          "hook": [
+            "line within 1 s"
+          ],
+          "cliffhanger": [
+            "ends on a question"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict",
+            "starts at scene start"
+          ],
+          "density": [
+            "3 lines / 22 s",
+            "33% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 28,
+      "post_first": false
+    },
+    {
+      "id": "E003-P4",
+      "segments": [
+        {
+          "ep": 3,
+          "start": 0.0,
+          "end": 21.31,
+          "first_idx": 0,
+          "last_idx": 7,
+          "start_ts": "00:00.00",
+          "end_ts": "00:21.31",
+          "duration": 21.31
+        }
+      ],
+      "duration": 21.31,
+      "hook_text": "\"Thank you. We are safe now.\"",
+      "cliffhanger_text": "\"You signed the contract yourself, Mira.\"",
+      "why": "Hook: line within 1 s | Context: 3 characters in conflict; starts at scene start",
+      "scores": {
+        "hook": 0.35,
+        "cliffhanger": 0.0,
+        "standalone": 1.0,
+        "density": 0.482
+      },
+      "total": 0.3707,
+      "flags": [],
+      "status": "pending",
+      "kind": "single",
+      "heuristic": {
+        "hook": 0.35,
+        "cliffhanger": 0.0,
+        "standalone": 1.0,
+        "density": 0.482,
+        "reasons": {
+          "hook": [
+            "line within 1 s"
+          ],
+          "cliffhanger": [],
+          "standalone": [
+            "base 0.6",
+            "3 characters in conflict",
+            "starts at scene start"
+          ],
+          "density": [
+            "4 lines / 21 s",
+            "50% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": 29,
+      "post_first": false
+    }
+  ],
+  "cold_open_promos": [
+    {
+      "id": "E003-C1",
+      "segments": [
+        {
+          "ep": 3,
+          "start": 0.0,
+          "end": 3.02,
+          "first_idx": 0,
+          "last_idx": 0,
+          "start_ts": "00:00.00",
+          "end_ts": "00:03.02",
+          "duration": 3.02
+        },
+        {
+          "ep": 3,
+          "start": 11.92,
+          "end": 65.83,
+          "first_idx": 4,
+          "last_idx": 18,
+          "start_ts": "00:11.92",
+          "end_ts": "01:05.83",
+          "duration": 53.91
+        }
+      ],
+      "duration": 56.93,
+      "hook_text": "\"Thank you. We are safe now.\"",
+      "cliffhanger_text": "\"Tomorrow at dawn, the whole kingdom will know who you really are.\"",
+      "why": "Cold open: strongest early hook line + E003-P1's cliffhanger ending. Hook: line within 1 s; exclamation/question in first 3 s; shock words: slap, how dare, gasp; intense emotion: outraged | Cliffhanger: threat/ultimatum: tomorrow; reveal: who you really; SFX/visual swell: thunder | Context: 4 characters in conflict",
+      "scores": {
+        "hook": 1.0,
+        "cliffhanger": 0.7,
+        "standalone": 0.9,
+        "density": 0.65
+      },
+      "total": 0.84,
+      "flags": [],
+      "status": "pending",
+      "kind": "cold_open",
+      "heuristic": {
+        "hook": 0.35,
+        "cliffhanger": 0.7,
+        "standalone": 0.9,
+        "density": 0.65,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: slap, how dare, gasp",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: tomorrow",
+            "reveal: who you really",
+            "SFX/visual swell: thunder"
+          ],
+          "standalone": [
+            "base 0.6",
+            "4 characters in conflict"
+          ],
+          "density": [
+            "9 lines / 54 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": null,
+      "post_first": false
+    },
+    {
+      "id": "E006-C1",
+      "segments": [
+        {
+          "ep": 6,
+          "start": 17.31,
+          "end": 22.15,
+          "first_idx": 4,
+          "last_idx": 5,
+          "start_ts": "00:17.31",
+          "end_ts": "00:22.15",
+          "duration": 4.84
+        },
+        {
+          "ep": 6,
+          "start": 52.6,
+          "end": 80.94,
+          "first_idx": 13,
+          "last_idx": 20,
+          "start_ts": "00:52.60",
+          "end_ts": "01:20.94",
+          "duration": 28.34
+        }
+      ],
+      "duration": 33.18,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Cold open: strongest early hook line + E006-P1's cliffhanger ending. Hook: line within 1 s; exclamation/question in first 3 s; shock words: chain, prison, guards; intense emotion: screaming | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 2 characters in conflict; starts at scene start",
+      "scores": {
+        "hook": 1.0,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.612
+      },
+      "total": 0.8037,
+      "flags": [],
+      "status": "pending",
+      "kind": "cold_open",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.612,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: chain, prison, guards",
+            "intense emotion: screaming"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict",
+            "starts at scene start"
+          ],
+          "density": [
+            "4 lines / 28 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": null,
+      "post_first": false
+    },
+    {
+      "id": "E007-C1",
+      "segments": [
+        {
+          "ep": 7,
+          "start": 2.39,
+          "end": 6.1,
+          "first_idx": 1,
+          "last_idx": 2,
+          "start_ts": "00:02.39",
+          "end_ts": "00:06.10",
+          "duration": 3.71
+        },
+        {
+          "ep": 7,
+          "start": 42.87,
+          "end": 66.51,
+          "first_idx": 12,
+          "last_idx": 17,
+          "start_ts": "00:42.87",
+          "end_ts": "01:06.51",
+          "duration": 23.64
+        }
+      ],
+      "duration": 27.35,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Cold open: strongest early hook line + E007-P1's cliffhanger ending. Hook: line within 1 s; exclamation/question in first 3 s; shock words: slap, how dare, gasp; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 2 characters in conflict; starts at scene start",
+      "scores": {
+        "hook": 1.0,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.59
+      },
+      "total": 0.8015,
+      "flags": [],
+      "status": "pending",
+      "kind": "cold_open",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.59,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: slap, how dare, gasp",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict",
+            "starts at scene start"
+          ],
+          "density": [
+            "3 lines / 24 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": null,
+      "post_first": false
+    },
+    {
+      "id": "E002-C1",
+      "segments": [
+        {
+          "ep": 2,
+          "start": 2.31,
+          "end": 5.17,
+          "first_idx": 1,
+          "last_idx": 2,
+          "start_ts": "00:02.31",
+          "end_ts": "00:05.17",
+          "duration": 2.86
+        },
+        {
+          "ep": 2,
+          "start": 34.58,
+          "end": 69.24,
+          "first_idx": 10,
+          "last_idx": 20,
+          "start_ts": "00:34.58",
+          "end_ts": "01:09.24",
+          "duration": 34.66
+        }
+      ],
+      "duration": 37.52,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Cold open: strongest early hook line + E002-P1's cliffhanger ending. Hook: line within 1 s; exclamation/question in first 3 s; shock words: chain, prison, guards; intense emotion: screaming | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 3 characters in conflict",
+      "scores": {
+        "hook": 1.0,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.703
+      },
+      "total": 0.7928,
+      "flags": [],
+      "status": "pending",
+      "kind": "cold_open",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.703,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: chain, prison, guards",
+            "intense emotion: screaming"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "3 characters in conflict"
+          ],
+          "density": [
+            "7 lines / 35 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": null,
+      "post_first": false
+    },
+    {
+      "id": "E008-C1",
+      "segments": [
+        {
+          "ep": 8,
+          "start": 3.83,
+          "end": 7.55,
+          "first_idx": 1,
+          "last_idx": 2,
+          "start_ts": "00:03.83",
+          "end_ts": "00:07.55",
+          "duration": 3.72
+        },
+        {
+          "ep": 8,
+          "start": 43.08,
+          "end": 65.25,
+          "first_idx": 12,
+          "last_idx": 18,
+          "start_ts": "00:43.08",
+          "end_ts": "01:05.25",
+          "duration": 22.17
+        }
+      ],
+      "duration": 25.89,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Cold open: strongest early hook line + E008-P1's cliffhanger ending. Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: desperate | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 3 characters in conflict; starts at scene start",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.671
+      },
+      "total": 0.7921,
+      "flags": [],
+      "status": "pending",
+      "kind": "cold_open",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.671,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: how dare",
+            "intense emotion: desperate"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "3 characters in conflict",
+            "starts at scene start"
+          ],
+          "density": [
+            "4 lines / 22 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": null,
+      "post_first": false
+    },
+    {
+      "id": "E004-C1",
+      "segments": [
+        {
+          "ep": 4,
+          "start": 2.4,
+          "end": 6.68,
+          "first_idx": 1,
+          "last_idx": 2,
+          "start_ts": "00:02.40",
+          "end_ts": "00:06.68",
+          "duration": 4.28
+        },
+        {
+          "ep": 4,
+          "start": 35.67,
+          "end": 59.55,
+          "first_idx": 11,
+          "last_idx": 16,
+          "start_ts": "00:35.67",
+          "end_ts": "00:59.55",
+          "duration": 23.88
+        }
+      ],
+      "duration": 28.16,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Cold open: strongest early hook line + E004-P1's cliffhanger ending. Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 2 characters in conflict; starts at scene start",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.588
+      },
+      "total": 0.7838,
+      "flags": [],
+      "status": "pending",
+      "kind": "cold_open",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 1.0,
+        "density": 0.588,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: how dare",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict",
+            "starts at scene start"
+          ],
+          "density": [
+            "3 lines / 24 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": null,
+      "post_first": false
+    },
+    {
+      "id": "E005-C1",
+      "segments": [
+        {
+          "ep": 5,
+          "start": 2.33,
+          "end": 4.94,
+          "first_idx": 1,
+          "last_idx": 2,
+          "start_ts": "00:02.33",
+          "end_ts": "00:04.94",
+          "duration": 2.61
+        },
+        {
+          "ep": 5,
+          "start": 42.76,
+          "end": 64.16,
+          "first_idx": 13,
+          "last_idx": 18,
+          "start_ts": "00:42.76",
+          "end_ts": "01:04.16",
+          "duration": 21.4
+        }
+      ],
+      "duration": 24.01,
+      "hook_text": "\"How dare you stand at this altar after what you did?\"",
+      "cliffhanger_text": "\"Then I will burn it, and your name with it!\"",
+      "why": "Cold open: strongest early hook line + E005-P1's cliffhanger ending. Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; SFX/visual swell: swell | Context: 2 characters in conflict",
+      "scores": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.61
+      },
+      "total": 0.766,
+      "flags": [],
+      "status": "pending",
+      "kind": "cold_open",
+      "heuristic": {
+        "hook": 0.95,
+        "cliffhanger": 0.55,
+        "standalone": 0.9,
+        "density": 0.61,
+        "reasons": {
+          "hook": [
+            "line within 1 s",
+            "exclamation/question in first 3 s",
+            "shock words: how dare",
+            "intense emotion: outraged"
+          ],
+          "cliffhanger": [
+            "threat/ultimatum: i will",
+            "ends on exclamation",
+            "SFX/visual swell: swell"
+          ],
+          "standalone": [
+            "base 0.6",
+            "2 characters in conflict"
+          ],
+          "density": [
+            "3 lines / 21 s",
+            "100% intense emotion"
+          ]
+        }
+      },
+      "llm": null,
+      "rank": null,
+      "post_first": false
+    }
+  ]
+}
