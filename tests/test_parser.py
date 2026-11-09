@@ -56,7 +56,7 @@ def test_basic_parse():
     assert d.text == '"How dare you!" She is shaking.'
     assert [b.idx for b in ep.blocks] == [0, 1, 2, 3]
     assert any("out of order" in w for w in ep.warnings)
-    assert any("without timestamp" in w for w in ep.warnings)
+    assert any("without a 'Start" in w for w in ep.warnings)
     assert ep.scenes[0].start == 0.0 and ep.scenes[0].end == 10.0
 
 

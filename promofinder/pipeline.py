@@ -7,11 +7,12 @@ from dataclasses import dataclass, field
 from . import features
 from .candidates import END_PAD, snap_end, make_segment, spanning_dialogue
 from .models import Promo
-from .parser import Episode, parse_zip
+from .parser import Episode, parse_any
 from .scoring import episode_candidates, rank, total, why_text, WEIGHTS, apply_llm
 from .validate import validate, passes
 
 COLD_HOOK_MAX = 6.0
+SPOILER_FLAG = 0.4  # informational flag for the marketing team; does not fail validation
 
 
 @dataclass
@@ -59,7 +60,7 @@ def cold_opens(ep: Episode, top: list[Promo]) -> list[Promo]:
 
 
 def run(zip_src, provider=None, progress=None, cache_dir=None) -> RunResult:
-    eps, gw = parse_zip(zip_src)
+    eps, gw = parse_any(zip_src)
     epmap = {e.num: e for e in eps}
     allp, colds, n_cand = [], [], 0
     n_eps = max((e.num for e in eps), default=0)
@@ -92,7 +93,8 @@ def run(zip_src, provider=None, progress=None, cache_dir=None) -> RunResult:
         allp += top
         colds += cold_opens(ep, top)
     for p in allp + colds:
-        p.flags = sorted(set(p.flags + validate(p, epmap)))
+        extra = ["spoiler_warning"] if p.scores.get("spoiler_risk", 0) >= SPOILER_FLAG else []
+        p.flags = sorted(set(p.flags + validate(p, epmap) + extra))
     ranked = rank(allp)
     colds.sort(key=lambda p: -p.total)
     meta = {

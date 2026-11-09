@@ -34,10 +34,10 @@ def secret(name):
 # ---------------- sidebar ----------------
 with st.sidebar:
     st.title("🎬 PromoFinder AI")
-    up = st.file_uploader("Screenplay ZIP", type=["zip"])
+    up = st.file_uploader("Screenplay ZIP, or episode .txt files", type=["zip", "txt"], accept_multiple_files=True)
     avail = [(l, p) for l, p in DEFAULTS if os.path.exists(p)]
     src_label = None
-    if up is None and avail:
+    if not up and avail:
         src_label = st.radio("…or use bundled", [l for l, _ in avail], index=0)
     provider_name = st.selectbox("LLM judge", PROVIDERS, index=0,
                                  help="'none' = rule-based only. LLMs only re-score/adjust by block index.")
@@ -52,8 +52,13 @@ with st.sidebar:
 
 
 def get_source():
-    if up is not None:
-        return up.getvalue(), up.name
+    if up:
+        if len(up) == 1 and up[0].name.lower().endswith(".zip"):
+            return up[0].getvalue(), up[0].name
+        txts = [(f.name, f.getvalue()) for f in up if f.name.lower().endswith(".txt")]
+        if txts:
+            return txts, f"{len(txts)} uploaded .txt file(s)"
+        return up[0].getvalue(), up[0].name
     for l, p in avail:
         if l == src_label:
             with open(p, "rb") as f:
@@ -62,7 +67,7 @@ def get_source():
 
 
 @st.cache_data(show_spinner=False)
-def run_rules(data: bytes):
+def run_rules(data):
     return run(data)
 
 
@@ -71,6 +76,8 @@ def do_run():
     if data is None:
         st.warning("Upload a ZIP first.")
         return
+    if isinstance(data, list):
+        data = sorted(data)
     try:
         if provider_name == "none":
             res = run_rules(data)
@@ -98,6 +105,14 @@ if "result" not in ss:
     st.stop()
 
 res = ss.result
+if not res.promos:
+    st.error("No promos could be generated from this input.")
+    for w in res.warnings:
+        st.warning(w)
+    for e in res.episodes:
+        for w in e.warnings:
+            st.text(f"ep {e.num}: {w}")
+    st.stop()
 epmap = {e.num: e for e in res.episodes}
 allp = res.promos + res.cold_opens
 for p in allp:  # apply reviewer decisions
@@ -240,6 +255,13 @@ with t4:
     if len(rr):
         st.write("Rejection reasons")
         st.bar_chart(rr)
+        top_reason, share = rr.index[0], rr.iloc[0] / rr.sum()
+        hint = {"weak hook": "hook rules (first 3 s)", "weak cliffhanger": "ending rules (last 5 s)",
+                "missing context": "standalone/context rules", "spoiler": "spoiler word list / penalty",
+                "timestamp issue": "candidate cut points", "other": "review notes"}.get(top_reason, "rules")
+        st.info(f"**{share:.0%} of your rejections are '{top_reason}'.** That points at the {hint}. "
+                "Export review_log.csv; `python feedback.py <zip>` checks whether the matching score already "
+                "separates approved from rejected clips before you change any weights.")
     if m.get("llm"):
         st.json(m["llm"])
 

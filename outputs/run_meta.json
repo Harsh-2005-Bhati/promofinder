@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-08T11:25:13",
+  "timestamp": "2026-11-09T06:53:06",
   "provider": "none",
   "model": null,
   "weights": {
@@ -58,5 +58,5 @@
     ]
   },
   "llm": null,
-  "elapsed_s": 25.9
+  "elapsed_s": 17.0
 }

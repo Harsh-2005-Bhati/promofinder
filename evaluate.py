@@ -68,6 +68,7 @@ def main():
     ap.add_argument("--labels", default="eval/labels.csv")
     ap.add_argument("--top", type=int, default=20)
     ap.add_argument("--compare", default=None, help="another promos.csv to compute overlap@N against")
+    ap.add_argument("--recall", action="store_true", help="also report recall@1/3/5 on eval/key_moments.csv")
     a = ap.parse_args()
     labels = load_labels(a.labels)
     P, rows, c = report(a.promos, labels, a.top)
@@ -82,6 +83,30 @@ def main():
         Q = load_promos(a.compare)[:a.top]
         hit = sum(1 for p in P if any(iou(p["_segs"][-1], q["_segs"][-1]) >= 0.5 for q in Q))
         print(f"overlap@{a.top} with {a.compare}: {hit}/{a.top}")
+    if a.recall:
+        for k in (1, 3, 5):
+            rows = recall_at_k(a.promos, k=k)
+            print(f"recall@{k} (key moment covered by one of the episode's top {k}): "
+                  f"{sum(1 for r in rows if r[2])}/{len(rows)}")
+        for ep, moment, pid, rank in recall_at_k(a.promos, k=3):
+            print(f"  ep {ep:<3} {'HIT ' + pid + ' (#' + rank + ')' if pid else 'MISS':<18} {moment[:70]}")
+
+
+
+def recall_at_k(promos_csv, moments_csv="eval/key_moments.csv", k=3, min_cover=0.5):
+    """Share of key moments where one of the episode's top-k promos covers >= min_cover of the moment."""
+    P = load_promos(promos_csv)
+    rows = []
+    for m in csv.DictReader(open(moments_csv, encoding="utf-8")):
+        ep, a, b = int(m["episode"]), float(m["start"]), float(m["end"])
+        top = [p for p in P if p["_segs"][-1][0] == ep][:k]  # ranked order = per-episode order
+        hit = None
+        for p in top:
+            for (e, s, t) in p["_segs"]:
+                if e == ep and (min(b, t) - max(a, s)) >= min_cover * (b - a):
+                    hit = p
+        rows.append((ep, m["moment"], hit["id"] if hit else "", hit["rank"] if hit else ""))
+    return rows
 
 
 if __name__ == "__main__":

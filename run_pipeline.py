@@ -12,7 +12,7 @@ from promofinder.validate import passes
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description="PromoFinder AI: rank 20-60 s promo clips from a screenplay ZIP")
-    ap.add_argument("zip", help="screenplay ZIP")
+    ap.add_argument("zip", help="screenplay ZIP, a folder of .txt files, or a single episode .txt")
     ap.add_argument("--out", default=None, help="output dir (default outputs/ or outputs/llm_<provider>/)")
     ap.add_argument("--llm", default="none", choices=["none", "gemini", "groq", "anthropic", "openai"])
     ap.add_argument("--model", default=None, help="override provider model name")

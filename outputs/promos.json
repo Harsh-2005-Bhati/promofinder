@@ -1,6 +1,6 @@
 {
   "meta": {
-    "timestamp": "2026-11-08T11:25:13",
+    "timestamp": "2026-11-09T06:53:06",
     "provider": "none",
     "model": null,
     "weights": {
@@ -59,7 +59,7 @@
       ]
     },
     "llm": null,
-    "elapsed_s": 25.9
+    "elapsed_s": 17.0
   },
   "promos": [
     {
@@ -7864,7 +7864,9 @@
         "spoiler_risk": 0.745
       },
       "total": 0.5121,
-      "flags": [],
+      "flags": [
+        "spoiler_warning"
+      ],
       "status": "pending",
       "kind": "single",
       "heuristic": {
@@ -8780,7 +8782,9 @@
         "spoiler_risk": 0.474
       },
       "total": 0.4744,
-      "flags": [],
+      "flags": [
+        "spoiler_warning"
+      ],
       "status": "pending",
       "kind": "single",
       "heuristic": {
@@ -9146,7 +9150,9 @@
         "spoiler_risk": 0.592
       },
       "total": 0.4679,
-      "flags": [],
+      "flags": [
+        "spoiler_warning"
+      ],
       "status": "pending",
       "kind": "single",
       "heuristic": {
@@ -10758,7 +10764,9 @@
         "spoiler_risk": 0.449
       },
       "total": 0.4123,
-      "flags": [],
+      "flags": [
+        "spoiler_warning"
+      ],
       "status": "pending",
       "kind": "single",
       "heuristic": {
@@ -11836,7 +11844,9 @@
         "spoiler_risk": 0.449
       },
       "total": 0.3221,
-      "flags": [],
+      "flags": [
+        "spoiler_warning"
+      ],
       "status": "pending",
       "kind": "single",
       "heuristic": {
@@ -12305,7 +12315,9 @@
         "spoiler_risk": 0.745
       },
       "total": 0.2256,
-      "flags": [],
+      "flags": [
+        "spoiler_warning"
+      ],
       "status": "pending",
       "kind": "single",
       "heuristic": {
@@ -15119,7 +15131,9 @@
         "spoiler_risk": 0.474
       },
       "total": 0.4744,
-      "flags": [],
+      "flags": [
+        "spoiler_warning"
+      ],
       "status": "pending",
       "kind": "cold_open",
       "heuristic": {

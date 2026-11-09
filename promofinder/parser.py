@@ -7,7 +7,7 @@ import re
 import zipfile
 from dataclasses import dataclass, field
 
-TS = r"(\d+):(\d+(?:\.\d+)?)"
+TS = r"(?:(\d+):)?(\d+):(\d+(?:\.\d+)?)"  # [HH:]MM:SS[.ss]
 BLOCK_RE = re.compile(r"^\s*\*\*(.+?)\*\*\s*:?\s*$")
 SE_RE = re.compile(r"^\s*start:\s*\(?\s*" + TS + r"\s*\)?\s*\|\s*end:\s*\(?\s*" + TS + r"\s*\)?", re.I)
 SCENE_RE = re.compile(r"^\s*scene\s+(\d+)\b", re.I)
@@ -33,8 +33,13 @@ ALIASES = {
 }
 
 
-def to_sec(m: str, s: str) -> float:
-    return int(m) * 60 + float(s)
+def to_sec(*g) -> float:
+    """to_sec(MM, SS) or to_sec(HH|None, MM, SS)."""
+    if len(g) == 2:
+        m, s = g
+        return int(m) * 60 + float(s)
+    h, m, s = g
+    return int(h or 0) * 3600 + int(m) * 60 + float(s)
 
 
 def fmt(t: float) -> str:
@@ -136,6 +141,7 @@ def parse_text(text: str, file: str = "?") -> Episode:
 
     scenes: list[Scene] = []
     raw: list[Block] = []
+    no_ts: list[str] = []
     cur: Scene | None = None
     i = 0
     while i < len(L):
@@ -162,10 +168,10 @@ def parse_text(text: str, file: str = "?") -> Episode:
             nx = L[i + 1] if i + 1 < len(L) else ""
             m = SE_RE.match(nx)
             if not m:
-                warnings.append(f"L{i+1}: block '{label}' without timestamp; skipped")
+                no_ts.append(f"L{i+1} '{label}'")
                 i += 1
                 continue
-            s, e = to_sec(*m.groups()[:2]), to_sec(*m.groups()[2:])
+            s, e = to_sec(*m.groups()[:3]), to_sec(*m.groups()[3:])
             j = i + 2
             text_lines = []
             while j < len(L):
@@ -189,6 +195,9 @@ def parse_text(text: str, file: str = "?") -> Episode:
             continue
         i += 1
 
+    if no_ts:
+        warnings.append(f"{len(no_ts)} block(s) without a 'Start: (..) | End: (..)' line skipped "
+                        f"(e.g. {', '.join(no_ts[:3])})")
     # sort by start (stable), count out-of-order
     nonmono = sum(1 for a, b in zip(raw, raw[1:]) if b.start < a.start - 0.01)
     if nonmono:
@@ -206,7 +215,8 @@ def parse_text(text: str, file: str = "?") -> Episode:
     if ov:
         warnings.append(f"{ov} overlapping dialogue line pair(s)")
     if not blocks:
-        warnings.append("no blocks parsed")
+        warnings.append("no blocks parsed: expected '**LABEL:**' lines followed by "
+                        "'Start: (MM:SS.ss) | End: (MM:SS.ss)'")
 
     scene_end = max((s.end for s in scenes if s.end is not None), default=0.0)
     block_end = max((b.end for b in blocks), default=0.0)
@@ -217,34 +227,70 @@ def parse_text(text: str, file: str = "?") -> Episode:
                    blocks=blocks, warnings=warnings, scenes=scenes)
 
 
-def parse_zip(src) -> tuple[list[Episode], list[str]]:
-    """src: path, bytes or file-like. Returns (episodes sorted by number, global warnings)."""
-    if isinstance(src, (bytes, bytearray)):
-        src = io.BytesIO(src)
+def _decode(data: bytes, name: str, gw: list[str]) -> str:
+    try:
+        return data.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        gw.append(f"{name}: not UTF-8, decoded as latin-1")
+        return data.decode("latin-1")
+
+
+def parse_files(files: list[tuple[str, bytes]]) -> tuple[list[Episode], list[str]]:
+    """files: (name, raw bytes) pairs. Files without any timed block are skipped with a warning."""
     gw: list[str] = []
     eps: list[Episode] = []
-    with zipfile.ZipFile(src) as z:
-        names = sorted(n for n in z.namelist()
-                       if n.lower().endswith(".txt") and "__macosx" not in n.lower()
-                       and not os.path.basename(n).startswith("."))
-        if not names:
-            gw.append("ZIP contains no .txt files")
-        for n in names:
-            try:
-                data = z.read(n)
-                try:
-                    text = data.decode("utf-8-sig")
-                except UnicodeDecodeError:
-                    text = data.decode("latin-1")
-                    gw.append(f"{n}: not UTF-8, decoded as latin-1")
-                ep = parse_text(text, n)
-                eps.append(ep)
-            except Exception as ex:  # never crash on one bad file
-                gw.append(f"{n}: failed to parse ({type(ex).__name__}: {ex})")
+    for n, data in sorted(files):
+        try:
+            ep = parse_text(_decode(data, n, gw), n)
+        except Exception as ex:  # never crash on one bad file
+            gw.append(f"{n}: failed to parse ({type(ex).__name__}: {ex})")
+            continue
+        if not ep.blocks:
+            gw.append(f"{n}: skipped, no screenplay blocks found ({'; '.join(ep.warnings[-1:])})")
+            continue
+        eps.append(ep)
     seen = {}
     for ep in eps:
         if ep.num in seen:
             gw.append(f"duplicate episode number {ep.num}: {seen[ep.num]} and {ep.file}")
         seen[ep.num] = ep.file
     eps.sort(key=lambda e: e.num)
+    if not eps:
+        gw.append("no usable episodes found")
     return eps, gw
+
+
+def _wanted(n: str) -> bool:
+    b = os.path.basename(n)
+    return n.lower().endswith(".txt") and "__macosx" not in n.lower() and not b.startswith(".")
+
+
+def parse_zip(src) -> tuple[list[Episode], list[str]]:
+    """src: path, bytes or file-like ZIP. Returns (episodes sorted by number, global warnings)."""
+    if isinstance(src, (bytes, bytearray)):
+        src = io.BytesIO(src)
+    try:
+        with zipfile.ZipFile(src) as z:
+            files = [(n, z.read(n)) for n in z.namelist() if _wanted(n)]
+    except zipfile.BadZipFile:
+        return [], ["not a valid ZIP file"]
+    if not files:
+        return [], ["ZIP contains no .txt files"]
+    return parse_files(files)
+
+
+def parse_any(src) -> tuple[list[Episode], list[str]]:
+    """ZIP (path/bytes), a folder of .txt files, a single .txt path, or a list of (name, bytes)."""
+    if isinstance(src, list):
+        return parse_files(src)
+    if isinstance(src, str) and os.path.isdir(src):
+        files = []
+        for root, _, names in os.walk(src):
+            for n in names:
+                p = os.path.join(root, n)
+                if _wanted(p):
+                    files.append((os.path.relpath(p, src), open(p, "rb").read()))
+        return parse_files(files) if files else ([], [f"no .txt files in {src}"])
+    if isinstance(src, str) and src.lower().endswith(".txt"):
+        return parse_files([(os.path.basename(src), open(src, "rb").read())])
+    return parse_zip(src)

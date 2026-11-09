@@ -1,6 +1,6 @@
 {
   "meta": {
-    "timestamp": "2026-11-08T11:15:44",
+    "timestamp": "2026-11-09T06:53:07",
     "provider": "none",
     "model": null,
     "weights": {
@@ -25,7 +25,7 @@
       ]
     },
     "llm": null,
-    "elapsed_s": 0.5
+    "elapsed_s": 0.4
   },
   "promos": [
     {
@@ -1418,7 +1418,9 @@
         "spoiler_risk": 0.5
       },
       "total": 0.5819,
-      "flags": [],
+      "flags": [
+        "spoiler_warning"
+      ],
       "status": "pending",
       "kind": "single",
       "heuristic": {
@@ -1861,7 +1863,9 @@
         "spoiler_risk": 0.5
       },
       "total": 0.3934,
-      "flags": [],
+      "flags": [
+        "spoiler_warning"
+      ],
       "status": "pending",
       "kind": "single",
       "heuristic": {

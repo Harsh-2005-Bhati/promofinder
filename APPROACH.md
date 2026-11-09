@@ -47,6 +47,12 @@ Premiere/Resolve, and ffmpeg cut scripts).
   rules on hooks and context, and the validator caught 3 promos where Gemini proposed a better range but
   quoted lines from the old one. That was a prompt ambiguity, now fixed. This is why code checks every LLM
   output instead of trusting it.
+- **Recall on 15 blind key moments:** every moment is in its episode's shortlist of 5, but top-3 recall fell
+  from 13/15 (v1) to 11/15 (v2). Part of that is v2 doing the right thing (ending on the question, not the
+  answer); one is a real regression (an action-line finale lost its bonus). I'm reporting it rather than
+  tuning it away.
+- **Feedback loop:** `feedback.py` shows the cliffhanger, context and spoiler scores now separate approved from
+  rejected clips, but the hook score barely does (0.91 vs 0.82). So the next round of work goes into hooks.
 - I **froze the rules** there. The 4 remaining failures ("Burn it." with no context, a loud lament read as
   tension, exposition with a spoiler the word list misses) are about meaning. More rules would just fit my
   own labels; this is where an LLM judge earns its cost.
@@ -58,11 +64,16 @@ Premiere/Resolve, and ffmpeg cut scripts).
 2. **Pilot on one live series:** the tool proposes 10, an editor cuts the approved ones, we A/B them against
    hand-picked promos on hold rate and CTR. Every approve/reject feeds `eval/labels.csv`.
 3. **LLM judge with a no-training key**, compared against rules on the same labels. Keep it only where it
-   beats rules by enough to pay for itself (well under ₹1 per episode on a Flash-class model).
+   beats rules by enough to pay for itself (≈₹1–3 per episode, ₹54–161 per show; see the cost table in the README).
 4. **Beyond scripts:** many series won't have timed scripts. Speech-to-text + shot detection can produce the
    same block format from video, and the rest of the pipeline stays unchanged.
 5. **Reuse across teams:** the same "find the 30 s that hooks" engine works for audio stories (Kuku FM) and
    for trailer selection in new markets; only the source format changes.
+
+## Built for unseen input
+They may run it on a new show. I stress-tested 10 kinds of broken files (uppercase, missing headers, renamed
+characters, hour-format timestamps, truncated files, garbage): it warns and skips, never crashes, and accepts a
+ZIP, a folder or single `.txt` episodes.
 
 ## Honest limits
 - Two review rounds of 20; the reviewer also designed the rules. A blind review by the promo team is the real
