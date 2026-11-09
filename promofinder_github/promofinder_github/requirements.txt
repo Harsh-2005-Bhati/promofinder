@@ -1,5 +1,0 @@
-streamlit>=1.45
-pandas>=2.0
-pydantic>=2.0
-pytest>=8.0
-# LLM providers use plain HTTPS (urllib) - no SDKs required.
