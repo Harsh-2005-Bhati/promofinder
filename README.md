@@ -97,7 +97,7 @@ invented demo pack.
 
 ## Evaluation
 
-**Labels.** `eval/labels.csv` holds every review decision (episode, start, end, approved/rejected, reason,
+**Labels.** `eval/review_v2_top20.csv` lists the current top 20 with their decisions; `eval/labels.csv` holds every review decision (episode, start, end, approved/rejected, reason,
 round). A promo matches a label only if it is the same episode and **both cut points are within 1.5 s**, because
 a clip with a different ending is a different promo. `evaluate.py` refuses to quote precision while any top-20
 promo is unlabelled.
