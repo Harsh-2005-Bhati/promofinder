@@ -9,6 +9,7 @@ import hashlib
 import json
 import os
 import re
+import time
 import urllib.error
 import urllib.request
 
@@ -55,14 +56,39 @@ class NoneProvider(LLMProvider):
         return {"judgments": []}
 
 
-def _post(url: str, headers: dict, body: dict, timeout: int = 120) -> dict:
-    req = urllib.request.Request(url, data=json.dumps(body).encode(), method="POST",
+class HTTPStatusError(RuntimeError):
+    def __init__(self, code, body):
+        super().__init__(f"HTTP {code}: {body[:300]!r}")
+        self.code = code
+
+
+def _request(url: str, headers: dict, body: dict | None = None, timeout: int = 300) -> dict:
+    data = json.dumps(body).encode() if body is not None else None
+    req = urllib.request.Request(url, data=data, method="POST" if body is not None else "GET",
                                  headers={"Content-Type": "application/json", **headers})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             return json.load(r)
     except urllib.error.HTTPError as e:
-        raise RuntimeError(f"HTTP {e.code}: {e.read()[:300]!r}") from None
+        raise HTTPStatusError(e.code, e.read()) from None
+
+
+def _post(url: str, headers: dict, body: dict, timeout: int = 300, tries: int = 4) -> dict:
+    """POST with backoff on rate limits / overload (429, 500, 503) and timeouts: waits 15, 30, 60 s.
+    Thinking models can take minutes per call, so the read timeout is 300 s."""
+    for i in range(tries):
+        try:
+            return _request(url, headers, body, timeout)
+        except HTTPStatusError as e:
+            if e.code in (429, 500, 503) and i < tries - 1:
+                time.sleep(15 * 2 ** i)
+                continue
+            raise
+        except (TimeoutError, urllib.error.URLError) as e:
+            if i < tries - 1 and ("timed out" in str(e).lower() or isinstance(e, TimeoutError)):
+                time.sleep(15 * 2 ** i)
+                continue
+            raise
 
 
 def extract_json(text: str) -> dict:
@@ -90,12 +116,33 @@ class HTTPProvider(LLMProvider):
 
 class GeminiProvider(HTTPProvider):
     name = "gemini"
+    BASE = "https://generativelanguage.googleapis.com/v1beta"
+
+    def list_models(self) -> list[str]:
+        r = _request(f"{self.BASE}/models?pageSize=200", {"x-goog-api-key": self.key})
+        return [m["name"].split("/", 1)[1] for m in r.get("models", [])
+                if "generateContent" in m.get("supportedGenerationMethods", [])]
+
+    def _fallback_model(self) -> str | None:
+        """If the configured model is gone (404), pick the newest stable text 'flash' model the key can use."""
+        def ver(n):
+            m = re.search(r"gemini-(\d+(?:\.\d+)?)", n)
+            return float(m.group(1)) if m else 0.0
+        cands = [n for n in self.list_models() if "flash" in n and not any(
+            x in n for x in ("preview", "exp", "lite", "tts", "image", "audio", "live", "thinking"))]
+        return max(cands, key=ver) if cands else None
 
     def complete(self, prompt):
-        r = _post(f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent",
-                  {"x-goog-api-key": self.key},
-                  {"contents": [{"role": "user", "parts": [{"text": prompt}]}],
-                   "generationConfig": {"responseMimeType": "application/json", "temperature": 0.2}})
+        body = {"contents": [{"role": "user", "parts": [{"text": prompt}]}],
+                "generationConfig": {"responseMimeType": "application/json", "temperature": 0.2}}
+        try:
+            r = _post(f"{self.BASE}/models/{self.model}:generateContent", {"x-goog-api-key": self.key}, body)
+        except HTTPStatusError as e:
+            alt = self._fallback_model() if e.code == 404 else None
+            if not alt:
+                raise
+            self.model = alt
+            r = _post(f"{self.BASE}/models/{self.model}:generateContent", {"x-goog-api-key": self.key}, body)
         return r["candidates"][0]["content"]["parts"][0]["text"]
 
 

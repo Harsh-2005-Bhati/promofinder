@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-08T15:20:11",
+  "timestamp": "2026-11-08T11:25:13",
   "provider": "none",
   "model": null,
   "weights": {
@@ -12,179 +12,51 @@
   "blocks": 3727,
   "total_runtime_s": 6162.62,
   "candidates_generated": 16167,
-  "promos_kept": 196,
-  "cold_open_promos": 40,
-  "validator_pass": 196,
+  "promos_kept": 201,
+  "cold_open_promos": 41,
+  "validator_pass": 201,
   "validator_pass_rate": 1.0,
   "cold_open_pass_rate": 1.0,
   "global_warnings": [],
   "episode_warnings": {
-    "1": [
-      "EPISODE NUMBER missing; using 1 from filename"
-    ],
-    "2": [
-      "EPISODE NUMBER missing; using 2 from filename"
-    ],
     "3": [
-      "EPISODE NUMBER missing; using 3 from filename",
       "1 overlapping dialogue line pair(s)"
     ],
     "4": [
-      "EPISODE NUMBER missing; using 4 from filename",
       "1 block(s) out of order in file; sorted by start time"
     ],
     "5": [
-      "EPISODE NUMBER missing; using 5 from filename",
       "1 overlapping dialogue line pair(s)"
     ],
     "6": [
-      "EPISODE NUMBER missing; using 6 from filename",
       "1 overlapping dialogue line pair(s)"
-    ],
-    "7": [
-      "EPISODE NUMBER missing; using 7 from filename"
-    ],
-    "8": [
-      "EPISODE NUMBER missing; using 8 from filename"
-    ],
-    "9": [
-      "EPISODE NUMBER missing; using 9 from filename"
-    ],
-    "10": [
-      "EPISODE NUMBER missing; using 10 from filename"
-    ],
-    "11": [
-      "EPISODE NUMBER missing; using 11 from filename"
     ],
     "12": [
-      "EPISODE NUMBER missing; using 12 from filename",
       "1 block(s) out of order in file; sorted by start time"
     ],
-    "13": [
-      "EPISODE NUMBER missing; using 13 from filename"
-    ],
-    "14": [
-      "EPISODE NUMBER missing; using 14 from filename"
-    ],
-    "15": [
-      "EPISODE NUMBER missing; using 15 from filename"
-    ],
-    "16": [
-      "EPISODE NUMBER missing; using 16 from filename"
-    ],
-    "17": [
-      "EPISODE NUMBER missing; using 17 from filename"
-    ],
     "18": [
-      "EPISODE NUMBER missing; using 18 from filename",
       "1 overlapping dialogue line pair(s)"
     ],
-    "19": [
-      "EPISODE NUMBER missing; using 19 from filename"
-    ],
     "20": [
-      "EPISODE NUMBER missing; using 20 from filename",
       "1 block(s) out of order in file; sorted by start time",
       "1 overlapping dialogue line pair(s)"
     ],
     "21": [
-      "EPISODE NUMBER missing; using 21 from filename",
       "2 block(s) out of order in file; sorted by start time",
       "1 overlapping dialogue line pair(s)"
-    ],
-    "22": [
-      "EPISODE NUMBER missing; using 22 from filename"
-    ],
-    "23": [
-      "EPISODE NUMBER missing; using 23 from filename"
-    ],
-    "24": [
-      "EPISODE NUMBER missing; using 24 from filename"
-    ],
-    "25": [
-      "EPISODE NUMBER missing; using 25 from filename"
-    ],
-    "26": [
-      "EPISODE NUMBER missing; using 26 from filename"
-    ],
-    "27": [
-      "EPISODE NUMBER missing; using 27 from filename"
     ],
     "28": [
-      "EPISODE NUMBER missing; using 28 from filename",
       "2 overlapping dialogue line pair(s)"
     ],
-    "29": [
-      "EPISODE NUMBER missing; using 29 from filename"
-    ],
-    "30": [
-      "EPISODE NUMBER missing; using 30 from filename"
-    ],
-    "31": [
-      "EPISODE NUMBER missing; using 31 from filename"
-    ],
     "32": [
-      "EPISODE NUMBER missing; using 32 from filename",
       "2 block(s) out of order in file; sorted by start time",
       "1 overlapping dialogue line pair(s)"
     ],
-    "33": [
-      "EPISODE NUMBER missing; using 33 from filename"
-    ],
-    "34": [
-      "EPISODE NUMBER missing; using 34 from filename"
-    ],
-    "35": [
-      "EPISODE NUMBER missing; using 35 from filename"
-    ],
-    "36": [
-      "EPISODE NUMBER missing; using 36 from filename"
-    ],
-    "37": [
-      "EPISODE NUMBER missing; using 37 from filename"
-    ],
-    "38": [
-      "EPISODE NUMBER missing; using 38 from filename"
-    ],
-    "39": [
-      "EPISODE NUMBER missing; using 39 from filename"
-    ],
-    "40": [
-      "EPISODE NUMBER missing; using 40 from filename"
-    ],
-    "41": [
-      "EPISODE NUMBER missing; using 41 from filename"
-    ],
-    "42": [
-      "EPISODE NUMBER missing; using 42 from filename"
-    ],
-    "43": [
-      "EPISODE NUMBER missing; using 43 from filename"
-    ],
-    "44": [
-      "EPISODE NUMBER missing; using 44 from filename"
-    ],
-    "45": [
-      "EPISODE NUMBER missing; using 45 from filename"
-    ],
     "46": [
-      "EPISODE NUMBER missing; using 46 from filename",
       "1 block(s) out of order in file; sorted by start time",
       "1 overlapping dialogue line pair(s)"
-    ],
-    "47": [
-      "EPISODE NUMBER missing; using 47 from filename"
-    ],
-    "48": [
-      "EPISODE NUMBER missing; using 48 from filename"
-    ],
-    "49": [
-      "EPISODE NUMBER missing; using 49 from filename"
-    ],
-    "50": [
-      "EPISODE NUMBER missing; using 50 from filename"
     ]
   },
   "llm": null,
-  "elapsed_s": 37.2
+  "elapsed_s": 25.9
 }

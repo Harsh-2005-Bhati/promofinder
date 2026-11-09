@@ -8,6 +8,7 @@ from .parser import Episode, fmt
 from .validate import validate, HARD_CHECKS
 
 WEIGHTS = {"hook": 0.35, "cliffhanger": 0.35, "standalone": 0.20, "density": 0.10}
+SPOILER_PENALTY = 0.25  # total -= 0.25 * spoiler_risk
 TOP_PER_EP = 5
 NMS_OVERLAP = 0.5
 TOP_N_DIVERSE = 20
@@ -15,7 +16,7 @@ MAX_PER_EP_TOP = 2
 
 
 def total(scores: dict) -> float:
-    return round(sum(WEIGHTS[k] * scores[k] for k in WEIGHTS), 4)
+    return round(sum(WEIGHTS[k] * scores[k] for k in WEIGHTS) - SPOILER_PENALTY * scores.get("spoiler_risk", 0.0), 4)
 
 
 def why_text(feat: dict) -> str:
@@ -28,6 +29,8 @@ def why_text(feat: dict) -> str:
     sw = [x for x in r["standalone"] if x != "base 0.6"]
     if sw:
         parts.append("Context: " + "; ".join(sw))
+    if feat.get("spoiler_risk", 0) > 0:
+        parts.append(f"Spoiler risk {feat['spoiler_risk']:.2f}: " + "; ".join(r.get("spoiler", [])))
     return " | ".join(parts) or "No strong signals."
 
 
@@ -48,17 +51,18 @@ def nms(promos: list[Promo], k: int = TOP_PER_EP, thr: float = NMS_OVERLAP) -> l
     return keep
 
 
-def make_promo(ep: Episode, seg: Segment, pid: str) -> Promo:
-    f = features.compute(ep, seg)
+def make_promo(ep: Episode, seg: Segment, pid: str, n_eps: int | None = None) -> Promo:
+    f = features.compute(ep, seg, n_eps)
     sc = {k: f[k] for k in WEIGHTS}
+    sc["spoiler_risk"] = f["spoiler_risk"]
     return Promo(id=pid, segments=[seg], duration=seg.duration, hook_text=f["hook_text"],
                  cliffhanger_text=f["cliffhanger_text"], why=why_text(f), scores=dict(sc), total=total(sc),
-                 heuristic=dict(sc, reasons=f["reasons"]))
+                 heuristic=dict(sc, n_eps=n_eps, reasons=f["reasons"]))
 
 
-def episode_candidates(ep: Episode) -> tuple[list[Promo], int]:
+def episode_candidates(ep: Episode, n_eps: int | None = None) -> tuple[list[Promo], int]:
     segs = generate(ep)
-    promos = [make_promo(ep, s, f"E{ep.num:03d}-c{i}") for i, s in enumerate(segs)]
+    promos = [make_promo(ep, s, f"E{ep.num:03d}-c{i}", n_eps) for i, s in enumerate(segs)]
     top = nms(promos)
     for r, p in enumerate(top, 1):
         p.id = f"E{ep.num:03d}-P{r}"
@@ -81,13 +85,15 @@ def apply_llm(ep: Episode, promo: Promo, j: dict) -> None:
             else:
                 promo.duration = seg.duration
                 promo.flags.append("llm_adjusted")
-                f = features.compute(ep, seg)
-                promo.heuristic = dict({k: f[k] for k in WEIGHTS}, reasons=f["reasons"])
+                f = features.compute(ep, seg, promo.heuristic.get("n_eps"))
+                promo.heuristic = dict({k: f[k] for k in WEIGHTS}, spoiler_risk=f["spoiler_risk"],
+                                       n_eps=promo.heuristic.get("n_eps"), reasons=f["reasons"])
         else:
             promo.flags.append("llm_adjust_discarded")
     to01 = lambda v: round((max(1, min(5, int(v))) - 1) / 4, 3)  # noqa: E731
     sc = {"hook": to01(j["hook_score"]), "cliffhanger": to01(j["cliffhanger_score"]),
-          "standalone": to01(j["standalone_score"]), "density": promo.heuristic["density"]}
+          "standalone": to01(j["standalone_score"]), "density": promo.heuristic["density"],
+          "spoiler_risk": promo.heuristic.get("spoiler_risk", 0.0)}
     promo.scores = sc
     promo.total = total(sc)
     if j.get("hook_text"):

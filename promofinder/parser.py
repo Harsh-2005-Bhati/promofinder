@@ -11,7 +11,7 @@ TS = r"(\d+):(\d+(?:\.\d+)?)"
 BLOCK_RE = re.compile(r"^\s*\*\*(.+?)\*\*\s*:?\s*$")
 SE_RE = re.compile(r"^\s*start:\s*\(?\s*" + TS + r"\s*\)?\s*\|\s*end:\s*\(?\s*" + TS + r"\s*\)?", re.I)
 SCENE_RE = re.compile(r"^\s*scene\s+(\d+)\b", re.I)
-EP_NUM_RE = re.compile(r"^\s*episode number:\s*(\d+)", re.I)
+EP_NUM_RE = re.compile(r"^\s*episode number:\s*(?:episode\s*)?#?(\d+)", re.I)
 FILE_NUM_RE = re.compile(r"episode-(\d+)", re.I)
 
 KIND_MAP = {

@@ -76,3 +76,66 @@ def test_cache(tmp_path):
 def test_extract_json():
     assert extract_json('```json\n{"a": 1}\n```') == {"a": 1}
     assert extract_json('Sure! {"a": 2} hope that helps') == {"a": 2}
+
+
+def test_gemini_model_fallback_and_backoff(monkeypatch):
+    from promofinder import llm
+
+    def fake_req(url, headers, body=None, timeout=120):
+        if url.endswith("/models?pageSize=200"):
+            return {"models": [{"name": f"models/{n}", "supportedGenerationMethods": ["generateContent"]}
+                               for n in ("gemini-2.5-flash", "gemini-3.6-flash", "gemini-3.6-flash-lite",
+                                         "gemini-3.8-flash-preview")]}
+        if "gemini-old" in url:
+            raise llm.HTTPStatusError(404, b"gone")
+        return {"candidates": [{"content": {"parts": [{"text": '{"judgments": []}'}]}}]}
+
+    monkeypatch.setattr(llm, "_request", fake_req)
+    g = llm.GeminiProvider("k", "gemini-old")
+    assert g.judge("p", {}) == {"judgments": []} and g.model == "gemini-3.6-flash"
+
+    n = {"c": 0}
+
+    def flaky(url, headers, body=None, timeout=120):
+        n["c"] += 1
+        if n["c"] < 3:
+            raise llm.HTTPStatusError(429, b"rate")
+        return {"ok": 1}
+
+    monkeypatch.setattr(llm, "_request", flaky)
+    monkeypatch.setattr(llm.time, "sleep", lambda s: None)
+    assert llm._post("u", {}, {}) == {"ok": 1} and n["c"] == 3
+
+
+def test_adjusted_range_texts_must_come_from_final_range(tmp_path):
+    """Regression for the Gemini run: texts quoted from the ORIGINAL clip after an adjust are flagged."""
+    from promofinder.parser import parse_zip
+
+    eps, _ = parse_zip(_zip(tmp_path))
+    E = {e.num: e for e in eps}
+
+    class Adj(LLMProvider):
+        name, model = "adj", "adj-1"
+
+        def __init__(self, stale):
+            self.stale = stale
+
+        def judge(self, prompt, schema):
+            out = []
+            for cid, a, b in re.findall(r"- (E\d+-P\d+): blocks \[(\d+)\]\.\.\[(\d+)\]", prompt):
+                ep = E[int(cid[1:4])]
+                a, b = int(a), int(b)
+                na = a + 1 if a + 1 <= b else a  # shift start by one block
+                final = [x for x in ep.blocks[na:b + 1] if x.is_line]
+                orig = [x for x in ep.blocks[a:b + 1] if x.is_line]
+                src = orig if self.stale else final
+                out.append({"candidate_id": cid, "hook_score": 4, "cliffhanger_score": 4, "standalone_score": 4,
+                            "hook_text": src[0].text, "cliffhanger_text": src[-1].text, "why": "x",
+                            "adjust": {"first_idx": na, "last_idx": b}})
+            return {"judgments": out}
+
+    good = run(_zip(tmp_path), provider=Adj(stale=False))
+    adjusted = [p for p in good.promos if "llm_adjusted" in p.flags]
+    assert adjusted and not any("hook_text_not_in_window" in p.flags for p in adjusted)
+    assert "If you return an adjust range" in __import__("promofinder.prompts", fromlist=["x"]).build_prompt(
+        eps[0], good.promos[:1])

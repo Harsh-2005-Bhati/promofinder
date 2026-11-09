@@ -62,12 +62,13 @@ def run(zip_src, provider=None, progress=None, cache_dir=None) -> RunResult:
     eps, gw = parse_zip(zip_src)
     epmap = {e.num: e for e in eps}
     allp, colds, n_cand = [], [], 0
+    n_eps = max((e.num for e in eps), default=0)
     llm_stats = {"calls": 0, "cached": 0, "fallbacks": 0, "adjust_discarded": 0, "adjusted": 0}
     for i, ep in enumerate(eps):
         if progress:
             progress(i, len(eps), ep)
         try:
-            top, n = episode_candidates(ep)
+            top, n = episode_candidates(ep, n_eps)
         except Exception as ex:  # one bad episode never kills the run
             gw.append(f"ep {ep.num}: candidate generation failed ({ex})")
             continue

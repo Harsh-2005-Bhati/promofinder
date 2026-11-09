@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-08T09:03:50",
+  "timestamp": "2026-11-08T11:15:44",
   "provider": "none",
   "model": null,
   "weights": {
@@ -13,7 +13,7 @@
   "total_runtime_s": 689.74,
   "candidates_generated": 723,
   "promos_kept": 29,
-  "cold_open_promos": 7,
+  "cold_open_promos": 6,
   "validator_pass": 29,
   "validator_pass_rate": 1.0,
   "cold_open_pass_rate": 1.0,
@@ -24,5 +24,5 @@
     ]
   },
   "llm": null,
-  "elapsed_s": 0.3
+  "elapsed_s": 0.5
 }

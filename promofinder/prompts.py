@@ -58,6 +58,8 @@ def build_prompt(ep: Episode, cands: list[Promo]) -> str:
         "  why: one or two sentences on why it works or fails,",
         "  adjust: null, or {first_idx, last_idx} block indices if a slightly different range is clearly better.",
         "RULES: never output timestamps; only block indices. Adjusted range must stay 20-60 s long.",
+        "If you return an adjust range, ALL scores, hook_text and cliffhanger_text must describe that FINAL range",
+        "(hook_text = a line from its first blocks, cliffhanger_text = its last line), not the original candidate.",
         'Output exactly: {"judgments": [ ... ]}',
     ]
     return "\n".join(lines)
