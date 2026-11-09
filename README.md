@@ -111,8 +111,8 @@ with tender/calm penalties, mid-conversation opener, inciting beat just before t
 ("fire" matching "firewood") was found and fixed along the way.
 
 **Round 2 (v2 rules).** The 8 round-1 approvals with unchanged cut points stayed in the top 20; all 9
-rejections left it. The 12 promos new to the top 20 were reviewed blind with the same criteria: 8 approved,
-4 rejected. **Top-20: 16/20 = 80 %.** The rules were then frozen; tuning further against the same labels
+rejections left it. The 12 promos new to the top 20 were reviewed blind with the same criteria (again drafted by
+Claude from the full scripts, checked by me): 8 approved, 4 rejected. **Top-20: 16/20 = 80 %.** The rules were then frozen; tuning further against the same labels
 would only fit my own judgement.
 
 **Caveats.** n = 20 per round. The reviewer also designed the rules, so round 2 is a held-out check of *new
