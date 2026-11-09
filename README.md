@@ -9,6 +9,21 @@ screenplay ZIP in the sidebar to run it on the real pack) · **Code:** https://g
 > never sent to a free-tier LLM, and the raw outputs quote only the single hook/ending line needed to review each
 > clip.
 
+## What's in this repo
+
+| Path | What it is |
+|---|---|
+| [`PromoFinder_Solution.pdf`](PromoFinder_Solution.pdf) | The 2-page solution doc: problem, assumptions, approach, results, failures, cost |
+| [`app.py`](app.py) | The Streamlit app (the live link above) |
+| [`run_pipeline.py`](run_pipeline.py) | Command line: screenplay ZIP in, ranked promos out |
+| [`outputs/`](outputs/) | **Raw outputs** on the full 50-episode pack (start with `outputs/promos.csv`) |
+| [`eval/`](eval/) | Review decisions and the evaluation data behind every number |
+| [`evaluate.py`](evaluate.py) · [`feedback.py`](feedback.py) · [`cost_estimate.py`](cost_estimate.py) | Reproduce precision/recall, the reviewer-feedback report and the cost table |
+| [`promofinder/`](promofinder/) | The code, one file per step (each folder has its own README) |
+| [`tests/`](tests/) | 27 automated tests, incl. messy-input robustness |
+| [`sample_data/`](sample_data/) | Invented demo pack the public app opens on |
+| [`APPROACH.md`](APPROACH.md) | Longer notes on decisions and trade-offs |
+
 Reads a microdrama screenplay ZIP and returns ranked **20–60 s promo clips** (episode, start/end, hook,
 cliffhanger, why-it-works), plus an **editor pack** a video editor can use directly (clip sheet, briefs, EDL,
 ffmpeg cut scripts). Deterministic code owns every timestamp; an optional LLM only re-scores code-generated
@@ -37,7 +52,7 @@ cd E:\promofinder\promofinder
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
-python -m pytest -q                         # 26 tests, no network needed
+python -m pytest -q                         # 27 tests, no network needed
 
 # put the screenplay pack at data\input.zip (data/ is git-ignored, never commit it)
 python run_pipeline.py data\input.zip --out outputs\        # rule-based; prints the summary
@@ -263,7 +278,7 @@ eval/labels.csv            review decisions, rounds 1-2 (32 clips)
 eval/review_v2_top20.csv   current top 20 with decisions
 eval/key_moments.csv       15 blind key moments for recall
 eval/feedback_report.md    output of feedback.py
-tests/                     26 tests (incl. messy-input robustness) + synthetic pack generator
+tests/                     27 tests (incl. messy-input robustness) + synthetic pack generator
 sample_data/synthetic_sample.zip
 outputs/                   real-pack run (rules) + synthetic_sample/ full run
 ```
