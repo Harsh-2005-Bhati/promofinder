@@ -1,4 +1,4 @@
-"""Optional LLM judge. Providers: none, gemini, groq, anthropic, openai (plain HTTPS, no SDKs).
+"""Optional LLM judge. Providers: none, gemini, groq, anthropic, openai, custom (any OpenAI-compatible URL).
 
 Contract: the LLM returns block indices only. Code converts indices -> times and re-validates (scoring.apply_llm).
 Responses are cached by prompt hash; bad JSON -> one retry -> heuristic fallback.
@@ -20,9 +20,10 @@ from .parser import Episode
 from .prompts import SCHEMA, build_prompt, SYSTEM
 
 ENV_KEYS = {"gemini": ("GEMINI_API_KEY", "GOOGLE_API_KEY"), "groq": ("GROQ_API_KEY",),
-            "anthropic": ("ANTHROPIC_API_KEY",), "openai": ("OPENAI_API_KEY",)}
+            "anthropic": ("ANTHROPIC_API_KEY",), "openai": ("OPENAI_API_KEY",),
+            "custom": ("LLM_API_KEY", "OPENAI_API_KEY")}
 DEFAULT_MODELS = {"gemini": "gemini-2.5-flash", "groq": "llama-3.3-70b-versatile",
-                  "anthropic": "claude-haiku-5-5", "openai": "gpt-4o-mini"}
+                  "anthropic": "claude-haiku-5-5", "openai": "gpt-4o-mini", "custom": None}
 
 
 class Adjust(BaseModel):
@@ -150,11 +151,36 @@ class OpenAICompatProvider(HTTPProvider):
     name = "openai"
     url = "https://api.openai.com/v1/chat/completions"
 
+    def __init__(self, api_key, model=None, base_url=None):
+        super().__init__(api_key, model)
+        base = base_url or os.environ.get(f"{self.name.upper()}_BASE_URL")
+        if base:  # any OpenAI-compatible server: vLLM, Ollama, LM Studio, OpenRouter, Azure-style gateways...
+            base = base.rstrip("/")
+            self.url = base if base.endswith("/chat/completions") else base + "/chat/completions"
+
     def complete(self, prompt):
-        r = _post(self.url, {"Authorization": f"Bearer {self.key}"},
-                  {"model": self.model, "temperature": 0.2, "response_format": {"type": "json_object"},
-                   "messages": [{"role": "system", "content": SYSTEM}, {"role": "user", "content": prompt}]})
+        body = {"model": self.model, "temperature": 0.2, "response_format": {"type": "json_object"},
+                "messages": [{"role": "system", "content": SYSTEM}, {"role": "user", "content": prompt}]}
+        try:
+            r = _post(self.url, {"Authorization": f"Bearer {self.key}"}, body)
+        except HTTPStatusError as e:
+            if e.code != 400:
+                raise
+            body.pop("response_format")  # some compatible servers reject JSON mode; the prompt already asks for JSON
+            r = _post(self.url, {"Authorization": f"Bearer {self.key}"}, body)
         return r["choices"][0]["message"]["content"]
+
+
+class CustomProvider(OpenAICompatProvider):
+    """Any OpenAI-compatible endpoint: --llm custom --base-url https://host/v1 --model NAME (key in LLM_API_KEY)."""
+    name = "custom"
+
+    def __init__(self, api_key, model=None, base_url=None):
+        base_url = base_url or os.environ.get("LLM_BASE_URL")
+        model = model or os.environ.get("LLM_MODEL")
+        if not base_url or not model:
+            raise ValueError("custom provider needs --base-url (or LLM_BASE_URL) and --model (or LLM_MODEL)")
+        super().__init__(api_key, model, base_url)
 
 
 class GroqProvider(OpenAICompatProvider):
@@ -174,18 +200,24 @@ class AnthropicProvider(HTTPProvider):
 
 
 PROVIDERS = {"gemini": GeminiProvider, "groq": GroqProvider, "anthropic": AnthropicProvider,
-             "openai": OpenAICompatProvider}
+             "openai": OpenAICompatProvider, "custom": CustomProvider}
 
 
-def get_provider(name: str, api_key: str | None = None, model: str | None = None) -> LLMProvider:
+def get_provider(name: str, api_key: str | None = None, model: str | None = None,
+                 base_url: str | None = None) -> LLMProvider:
     if name == "none":
         return NoneProvider()
     if name not in PROVIDERS:
         raise ValueError(f"unknown provider {name}")
     key = api_key or next((os.environ[k] for k in ENV_KEYS[name] if os.environ.get(k)), None)
+    if not key and name == "custom":
+        key = "none"  # local servers (Ollama, vLLM) often need no key
     if not key:
         raise ValueError(f"no API key for {name}: set {' or '.join(ENV_KEYS[name])}")
-    return PROVIDERS[name](key, model)
+    cls = PROVIDERS[name]
+    if issubclass(cls, OpenAICompatProvider):
+        return cls(key, model, base_url)
+    return cls(key, model)
 
 
 def parse_judgements(raw: dict, ids: set[str]) -> dict[str, dict]:

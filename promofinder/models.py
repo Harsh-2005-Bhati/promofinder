@@ -38,6 +38,7 @@ class Promo:
     llm: dict | None = None  # LLM judgement (if any)
     rank: int | None = None
     post_first: bool = False
+    why_detail: str = ""  # full rule reasons; `why` is the one-line summary the brief asks for
 
     @property
     def ep(self) -> int:

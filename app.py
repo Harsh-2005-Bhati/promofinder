@@ -16,7 +16,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULTS = [("Local pack (data/input.zip)", os.path.join(HERE, "data", "input.zip")),
             ("Synthetic sample (public demo)", os.path.join(HERE, "sample_data", "synthetic_sample.zip"))]
 REASONS = ["weak hook", "weak cliffhanger", "missing context", "spoiler", "timestamp issue", "other"]
-PROVIDERS = ["none", "gemini", "groq", "anthropic", "openai"]
+PROVIDERS = ["none", "gemini", "groq", "anthropic", "openai", "custom"]
 
 st.set_page_config(page_title="PromoFinder AI", page_icon="🎬", layout="wide")
 ss = st.session_state
@@ -42,6 +42,10 @@ with st.sidebar:
     provider_name = st.selectbox("LLM judge", PROVIDERS, index=0,
                                  help="'none' = rule-based only. LLMs only re-score/adjust by block index.")
     key = ""
+    base_url, model_name = None, None
+    if provider_name == "custom":
+        base_url = st.text_input("API base URL (OpenAI-compatible)", placeholder="https://host/v1")
+        model_name = st.text_input("Model name")
     if provider_name == "gemini":
         st.caption("⚠️ Gemini *free tier* inputs may be used by Google to improve its products. Don't send "
                    "confidential scripts on a free key; use the synthetic sample or a paid key.")
@@ -84,8 +88,9 @@ def do_run():
         else:
             from promofinder.llm import get_provider
             env_key = {"gemini": "GEMINI_API_KEY", "groq": "GROQ_API_KEY", "anthropic": "ANTHROPIC_API_KEY",
-                       "openai": "OPENAI_API_KEY"}[provider_name]
-            prov = get_provider(provider_name, api_key=key or secret(env_key) or None)
+                       "openai": "OPENAI_API_KEY", "custom": "LLM_API_KEY"}[provider_name]
+            prov = get_provider(provider_name, api_key=key or secret(env_key) or None,
+                                model=model_name or None, base_url=base_url or None)
             bar = st.progress(0.0, "Judging episodes…")
             res = run(data, provider=prov, cache_dir=os.path.join(HERE, "outputs", "cache"),
                       progress=lambda i, n, ep: bar.progress((i + 1) / n, f"Episode {ep.num} ({i+1}/{n})"))
@@ -176,6 +181,8 @@ def promo_card(p):
             st.markdown(f"**Hook:** {html.escape(p.hook_text)}")
             st.markdown(f"**Cliffhanger:** {html.escape(p.cliffhanger_text)}")
             st.markdown(f"**Why it works:** {p.why}")
+            if p.why_detail and p.why_detail != p.why:
+                st.caption("Rule details: " + p.why_detail)
             st.markdown(excerpt_html(p), unsafe_allow_html=True)
         with b:
             sc = pd.DataFrame({"final": p.scores, "rules": {k: p.heuristic.get(k) for k in p.scores}})
@@ -210,7 +217,7 @@ with t1:
     st.subheader("Top 10 to post first")
     for p in res.promos[:10]:
         st.markdown(f"- **{p.id}** ep {p.ep} {fmt(p.segments[0].start)}–{fmt(p.segments[0].end)} "
-                    f"({p.duration:.1f}s, {p.total:.2f}) — {p.why[:160]}")
+                    f"({p.duration:.1f}s, {p.total:.2f}): {p.why}")
     st.subheader("Review")
     for p in view[:n]:
         promo_card(p)

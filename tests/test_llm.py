@@ -139,3 +139,20 @@ def test_adjusted_range_texts_must_come_from_final_range(tmp_path):
     assert adjusted and not any("hook_text_not_in_window" in p.flags for p in adjusted)
     assert "If you return an adjust range" in __import__("promofinder.prompts", fromlist=["x"]).build_prompt(
         eps[0], good.promos[:1])
+
+
+def test_custom_openai_compatible_endpoint(monkeypatch):
+    """'We may connect stronger models through APIs we provide': any OpenAI-compatible URL works."""
+    from promofinder import llm
+    seen = {}
+
+    def fake(url, headers, body=None, timeout=300):
+        seen["url"], seen["model"] = url, body["model"]
+        if "response_format" in body:
+            raise llm.HTTPStatusError(400, b"json mode unsupported")
+        return {"choices": [{"message": {"content": '{"judgments": []}'}}]}
+
+    monkeypatch.setattr(llm, "_request", fake)
+    p = llm.get_provider("custom", api_key="k", model="their-model", base_url="https://models.example.com/v1/")
+    assert p.judge("x", {}) == {"judgments": []}
+    assert seen == {"url": "https://models.example.com/v1/chat/completions", "model": "their-model"}

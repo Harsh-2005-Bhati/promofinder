@@ -6,7 +6,7 @@ Timings come straight from the script timestamps. HOOK = first 3 s, CLIFF = last
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Tomorrow at dawn, the whole kingdom will know who you really are.
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: slap, how dare, gasp; intense emotion: outraged | Cliffhanger: threat/ultimatum: tomorrow; reveal: who you really; intense delivery: menacing; SFX/visual swell reinforces: thunder | Context: 4 characters in conflict
+**Why:** Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Tomorrow at dawn, the whole kingdom will know who…"); stands alone.
 
 ```
 HOOK       00:11.92  MIRA (Outraged, Trembling): How dare you stand at this altar after what you did?
@@ -28,7 +28,7 @@ CLIFF      01:02.97  SFX: Thunder cracks. Cut to black.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** What truth? Edric, what did you do to him?
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: slap, how dare, gasp; intense emotion: outraged | Cliffhanger: ends on a question; reveal: truth; intense delivery: shocked | Context: 4 characters in conflict
+**Why:** Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on an unanswered question ("What truth? Edric, what did you do to him?"); stands alone.
 
 ```
 HOOK       00:02.31  MIRA (Outraged, Trembling): How dare you stand at this altar after what you did?
@@ -48,7 +48,7 @@ CLIFF      00:44.21  MIRA (Shocked): What truth? Edric, what did you do to him?
 
 **Caption idea:** Never! Not while I still breathe!
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: chain, guards; intense emotion: screaming | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 3 characters in conflict
+**Why:** Opens on a screaming line ("Never! Not while I still breathe!"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 HOOK       00:34.58  MIRA (Screaming): Never! Not while I still breathe!
@@ -67,7 +67,7 @@ CLIFF      01:06.75  SFX: A low drone swells.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 2 characters in conflict; starts at scene start
+**Why:** Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 HOOK       00:35.67  MIRA (Outraged, Trembling): How dare you stand at this altar after what you did?
@@ -81,7 +81,7 @@ CLIFF      00:55.87  SFX: A low drone swells.
 
 **Caption idea:** Never! Not while I still breathe!
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: chain, guards; intense emotion: screaming | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 2 characters in conflict; starts at scene start | Spoiler risk 0.09: episode 6/8 (late in series)
+**Why:** Opens on a screaming line ("Never! Not while I still breathe!"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 HOOK       00:52.60  MIRA (Screaming): Never! Not while I still breathe!
@@ -97,7 +97,7 @@ CLIFF      01:16.57  SFX: A low drone swells.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 3 characters in conflict
+**Why:** Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 HOOK       00:03.33  MIRA (Outraged, Trembling): How dare you stand at this altar after what you did?
@@ -120,7 +120,7 @@ CLIFF      00:57.16  SFX: A low drone swells.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 2 characters in conflict
+**Why:** Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 HOOK       00:42.76  MIRA (Outraged, Trembling): How dare you stand at this altar after what you did?
@@ -134,7 +134,7 @@ CLIFF      01:00.72  SFX: A low drone swells.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 2 characters in conflict
+**Why:** Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 HOOK       01:05.83  MIRA (Outraged, Trembling): How dare you stand at this altar after what you did?
@@ -148,7 +148,7 @@ CLIFF      01:24.83  SFX: A low drone swells.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** My lady, the duke's guards are at the gate.
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: slap, how dare, gasp; intense emotion: outraged | Cliffhanger: reveal: the duke; intense delivery: fearful; SFX/visual swell reinforces: swell | Context: 3 characters in conflict
+**Why:** Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a reveal ("My lady, the duke's guards are at the gate."); stands alone.
 
 ```
 HOOK       00:02.33  MIRA (Outraged, Trembling): How dare you stand at this altar after what you did?
@@ -163,7 +163,7 @@ CLIFF      00:21.63  THE OLD STEWARD (Fearful): My lady, the duke's guards are a
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: slap, how dare, gasp; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 2 characters in conflict; starts at scene start | Spoiler risk 0.19: episode 7/8 (late in series)
+**Why:** Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 HOOK       00:42.87  MIRA (Outraged, Trembling): How dare you stand at this altar after what you did?
@@ -177,7 +177,7 @@ CLIFF      01:02.34  SFX: A low drone swells.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 2 characters in conflict | Spoiler risk 0.09: episode 6/8 (late in series)
+**Why:** Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 HOOK       00:17.31  MIRA (Outraged, Trembling): How dare you stand at this altar after what you did?
@@ -191,7 +191,7 @@ CLIFF      00:36.97  SFX: A low drone swells.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** My lady, the duke's guards are at the gate.
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: reveal: the duke; intense delivery: fearful; SFX/visual swell reinforces: swell | Context: 3 characters in conflict
+**Why:** Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a reveal ("My lady, the duke's guards are at the gate."); stands alone.
 
 ```
 HOOK       00:02.40  MIRA (Outraged, Trembling): How dare you stand at this altar after what you did?
@@ -206,7 +206,7 @@ CLIFF      00:21.65  THE OLD STEWARD (Fearful): My lady, the duke's guards are a
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 2 characters in conflict | Spoiler risk 0.19: episode 7/8 (late in series)
+**Why:** Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 HOOK       00:02.39  MIRA (Outraged, Trembling): How dare you stand at this altar after what you did?
@@ -220,7 +220,7 @@ CLIFF      00:19.23  SFX: A low drone swells.
 
 **Caption idea:** Sister... he knows the truth about our father.
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: desperate | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 3 characters in conflict; starts at scene start | Spoiler risk 0.30: episode 8/8 (late in series)
+**Why:** Opens on a desperate line ("Sister... he knows the truth about our father."), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 HOOK       00:43.08  CORIN (Weak, Desperate): Sister... he knows the truth about our father.
@@ -235,7 +235,7 @@ CLIFF      01:03.07  SFX: A low drone swells.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 2 characters in conflict | Spoiler risk 0.30: episode 8/8 (late in series)
+**Why:** Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 HOOK       00:03.83  MIRA (Outraged, Trembling): How dare you stand at this altar after what you did?
@@ -249,7 +249,7 @@ CLIFF      00:22.72  SFX: A low drone swells.
 
 **Caption idea:** Then I will burn it, and your name with it!
 **Ends on:** Sister... he knows the truth about our father.
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: reveal: truth; intense delivery: desperate; ends at episode end on a tense line | Context: first line opens with conjunction/yes/no; 4 characters in conflict
+**Why:** Opens on a defiant line ("Then I will burn it, and your name with…"), cuts on a reveal, the episode's own ending ("Sister... he knows the truth about our father."); needs a little context.
 
 ```
 HOOK       01:21.63  LADY MIRA (Defiant): Then I will burn it, and your name with it!
@@ -265,7 +265,7 @@ CLIFF      01:46.02  CORIN (Weak, Desperate): Sister... he knows the truth about
 
 **Caption idea:** Then I will burn it, and your name with it!
 **Ends on:** Never! Not while I still breathe!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: threat/ultimatum: never; ends on exclamation; intense delivery: screaming | Context: first line opens with conjunction/yes/no; 3 characters in conflict
+**Why:** Opens on a defiant line ("Then I will burn it, and your name with…"), cuts on a threat ("Never! Not while I still breathe!"); needs a little context.
 
 ```
 HOOK       00:15.61  LADY MIRA (Defiant): Then I will burn it, and your name with it!
@@ -279,7 +279,7 @@ CLIFF      00:30.82  MIRA (Screaming): Never! Not while I still breathe!
 
 **Caption idea:** Then I will burn it, and your name with it!
 **Ends on:** Never! Not while I still breathe!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: threat/ultimatum: never; ends on exclamation; intense delivery: screaming | Context: first line opens with conjunction/yes/no; 3 characters in conflict
+**Why:** Opens on a defiant line ("Then I will burn it, and your name with…"), cuts on a threat ("Never! Not while I still breathe!"); needs a little context.
 
 ```
 HOOK       00:16.80  LADY MIRA (Defiant): Then I will burn it, and your name with it!
@@ -293,7 +293,7 @@ CLIFF      00:33.53  MIRA (Screaming): Never! Not while I still breathe!
 
 **Caption idea:** Then I will burn it, and your name with it!
 **Ends on:** Never! Not while I still breathe!
-**Why:** Hook: line within 1 s; exclamation/question in first 3 s; shock words: burn; intense emotion: defiant | Cliffhanger: threat/ultimatum: never; ends on exclamation; intense delivery: screaming | Context: first line opens with conjunction/yes/no; 3 characters in conflict | Spoiler risk 0.14: episode 6/8 (late in series); series reveal: the duke
+**Why:** Opens on a defiant line ("Then I will burn it, and your name with…"), cuts on a threat ("Never! Not while I still breathe!"); needs a little context.
 
 ```
 HOOK       00:33.35  LADY MIRA (Defiant): Then I will burn it, and your name with it!
@@ -307,7 +307,7 @@ CLIFF      00:52.60  MIRA (Screaming): Never! Not while I still breathe!
 
 **Caption idea:** My lady, the duke's guards are at the gate.
 **Ends on:** Sister... he knows the truth about our father.
-**Why:** Hook: line within 1 s; shock words: duke, guards; intense emotion: fearful | Cliffhanger: reveal: truth; intense delivery: desperate; ends at episode end on a tense line | Context: 4 characters in conflict | Spoiler risk 0.32: episode 7/8 (late in series); series reveal: the duke
+**Why:** Opens on a fearful line ("My lady, the duke's guards are at the gate."), cuts on a reveal, the episode's own ending ("Sister... he knows the truth about our father."); stands alone.
 
 ```
 HOOK       01:06.51  THE OLD STEWARD (Fearful): My lady, the duke's guards are at the gate.
@@ -321,7 +321,7 @@ CLIFF      01:23.59  CORIN (Weak, Desperate): Sister... he knows the truth about
 
 **Caption idea:** Thank you. We are safe now.
 **Ends on:** Tomorrow at dawn, the whole kingdom will know who you really are.
-**Why:** Cold open: strongest early hook line + E003-P1's cliffhanger ending. Hook: line within 1 s; exclamation/question in first 3 s; shock words: slap, how dare, gasp; intense emotion: outraged | Cliffhanger: threat/ultimatum: tomorrow; reveal: who you really; intense delivery: menacing; SFX/visual swell reinforces: thunder | Context: 4 characters in conflict
+**Why:** Cold open: strongest early line as a teaser, then E003-P1. Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Tomorrow at dawn, the whole kingdom will know who…"); stands alone.
 
 ```
 --- segment 1 (ep 3) ---
@@ -346,7 +346,7 @@ CLIFF      01:02.97  SFX: Thunder cracks. Cut to black.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Cold open: strongest early hook line + E004-P1's cliffhanger ending. Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 2 characters in conflict; starts at scene start
+**Why:** Cold open: strongest early line as a teaser, then E004-P1. Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 --- segment 1 (ep 4) ---
@@ -363,7 +363,7 @@ CLIFF      00:55.87  SFX: A low drone swells.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Cold open: strongest early hook line + E006-P1's cliffhanger ending. Hook: line within 1 s; exclamation/question in first 3 s; shock words: chain, guards; intense emotion: screaming | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 2 characters in conflict; starts at scene start | Spoiler risk 0.09: episode 6/8 (late in series)
+**Why:** Cold open: strongest early line as a teaser, then E006-P1. Opens on a screaming line ("Never! Not while I still breathe!"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 --- segment 1 (ep 6) ---
@@ -382,7 +382,7 @@ CLIFF      01:16.57  SFX: A low drone swells.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Cold open: strongest early hook line + E005-P1's cliffhanger ending. Hook: line within 1 s; exclamation/question in first 3 s; shock words: how dare; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 2 characters in conflict
+**Why:** Cold open: strongest early line as a teaser, then E005-P1. Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 --- segment 1 (ep 5) ---
@@ -399,7 +399,7 @@ CLIFF      01:00.72  SFX: A low drone swells.
 
 **Caption idea:** How dare you stand at this altar after what you did?
 **Ends on:** Then I will burn it, and your name with it!
-**Why:** Cold open: strongest early hook line + E007-P1's cliffhanger ending. Hook: line within 1 s; exclamation/question in first 3 s; shock words: slap, how dare, gasp; intense emotion: outraged | Cliffhanger: threat/ultimatum: i will; ends on exclamation; intense delivery: defiant; SFX/visual swell reinforces: swell | Context: 2 characters in conflict; starts at scene start | Spoiler risk 0.19: episode 7/8 (late in series)
+**Why:** Cold open: strongest early line as a teaser, then E007-P1. Opens on an outraged line ("How dare you stand at this altar after what…"), cuts on a threat ("Then I will burn it, and your name with…"); stands alone.
 
 ```
 --- segment 1 (ep 7) ---

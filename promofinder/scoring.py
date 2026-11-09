@@ -34,6 +34,47 @@ def why_text(feat: dict) -> str:
     return " | ".join(parts) or "No strong signals."
 
 
+def _q(t: str, n: int = 9) -> str:
+    w = (t or "").strip().strip('"“”').split()
+    return " ".join(w[:n]) + ("…" if len(w) > n else "")
+
+
+def one_line(feat: dict, hook_text: str, cliff_text: str) -> str:
+    """One plain-English line: what stops the scroll, what leaves it open, does it stand alone."""
+    r = feat["reasons"]
+    emo = next((x.split(": ", 1)[1] for x in r["hook"] if x.startswith("intense emotion: ")), None)
+    shock = next((x.split(": ", 1)[1].split(",")[0].strip() for x in r["hook"] if x.startswith("shock words: ")), None)
+    if emo:
+        opener = f"Opens on {'an' if emo[0] in 'aeiou' else 'a'} {emo} line"
+    elif shock:
+        opener = f"Opens on a '{shock}' moment"
+    elif any("CAMERA-only" in x for x in r["hook"]):
+        opener = "Slow visual opening"
+    else:
+        opener = "Opens on a charged line"
+    opener += f' ("{_q(hook_text)}")'
+    c = " ".join(r["cliffhanger"])
+    if "question" in c:
+        ender = "cuts on an unanswered question"
+    elif "threat" in c:
+        ender = "cuts on a threat"
+    elif "reveal" in c:
+        ender = "cuts on a reveal"
+    elif "tense action" in c:
+        ender = "cuts mid-action"
+    elif "calm" in c or "resolution" in c or "tender" in c:
+        ender = "ends on a calm beat (weak cliffhanger)"
+    else:
+        ender = "ends without a clear cliffhanger"
+    if "episode end" in c:
+        ender += ", the episode's own ending"
+    ender += f' ("{_q(cliff_text)}")'
+    ctx = "stands alone" if feat["standalone"] >= 0.8 else "needs a little context" if feat["standalone"] >= 0.6 \
+        else "needs prior context"
+    risk = "; spoiler risk" if feat.get("spoiler_risk", 0) >= 0.4 else ""
+    return f"{opener}, {ender}; {ctx}{risk}."
+
+
 def overlap_frac(a: Segment, b: Segment) -> float:
     if a.ep != b.ep:
         return 0.0
@@ -56,7 +97,8 @@ def make_promo(ep: Episode, seg: Segment, pid: str, n_eps: int | None = None) ->
     sc = {k: f[k] for k in WEIGHTS}
     sc["spoiler_risk"] = f["spoiler_risk"]
     return Promo(id=pid, segments=[seg], duration=seg.duration, hook_text=f["hook_text"],
-                 cliffhanger_text=f["cliffhanger_text"], why=why_text(f), scores=dict(sc), total=total(sc),
+                 cliffhanger_text=f["cliffhanger_text"], why=one_line(f, f["hook_text"], f["cliffhanger_text"]),
+                 why_detail=why_text(f), scores=dict(sc), total=total(sc),
                  heuristic=dict(sc, n_eps=n_eps, reasons=f["reasons"]))
 
 

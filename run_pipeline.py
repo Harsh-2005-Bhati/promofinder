@@ -14,8 +14,9 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description="PromoFinder AI: rank 20-60 s promo clips from a screenplay ZIP")
     ap.add_argument("zip", help="screenplay ZIP, a folder of .txt files, or a single episode .txt")
     ap.add_argument("--out", default=None, help="output dir (default outputs/ or outputs/llm_<provider>/)")
-    ap.add_argument("--llm", default="none", choices=["none", "gemini", "groq", "anthropic", "openai"])
+    ap.add_argument("--llm", default="none", choices=["none", "gemini", "groq", "anthropic", "openai", "custom"])
     ap.add_argument("--model", default=None, help="override provider model name")
+    ap.add_argument("--base-url", default=None, help="OpenAI-compatible endpoint for --llm custom/openai")
     ap.add_argument("--editor-top", type=int, default=20, help="promos in the editor pack (0 = skip)")
     ap.add_argument("--fps", type=int, default=30, help="frame rate for EDL/clip-sheet timecodes")
     ap.add_argument("--video-dir", default="videos", help="folder with episode videos (for cut scripts)")
@@ -27,7 +28,7 @@ def main(argv=None):
     if a.llm != "none":
         from promofinder.llm import get_provider
         try:
-            provider = get_provider(a.llm, model=a.model)
+            provider = get_provider(a.llm, model=a.model, base_url=a.base_url)
         except ValueError as ex:
             sys.exit(f"error: {ex}")
     t0 = time.time()

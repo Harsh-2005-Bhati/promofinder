@@ -54,7 +54,8 @@ def cold_opens(ep: Episode, top: list[Promo]) -> list[Promo]:
     sc = dict(main.scores, hook=round(max(h, main.scores["hook"]), 3))
     p = Promo(id=f"E{ep.num:03d}-C1", segments=[hseg, mseg], duration=round(dur, 2), hook_text=ht,
               cliffhanger_text=main.cliffhanger_text,
-              why=f"Cold open: strongest early hook line + {main.id}'s cliffhanger ending. " + main.why,
+              why=f"Cold open: strongest early line as a teaser, then {main.id}. " + main.why,
+              why_detail=main.why_detail,
               scores=sc, total=total(sc), kind="cold_open", heuristic=dict(main.heuristic, hook=round(h, 3)))
     return [p]
 

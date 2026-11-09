@@ -2,7 +2,12 @@
 
 **Live app:** https://promofinder-rb4wbkeye8i8jttfu7ay67.streamlit.app/ (opens on a synthetic demo pack; upload the
 screenplay ZIP in the sidebar to run it on the real pack) · **Code:** https://github.com/Harsh-2005-Bhati/promofinder ·
-**Approach note (read this first):** [APPROACH.md](APPROACH.md)
+**Solution doc (2-page PDF):** [PromoFinder_Solution.pdf](PromoFinder_Solution.pdf) ·
+**Approach note:** [APPROACH.md](APPROACH.md) · **Raw outputs (full pack):** [outputs/](outputs/)
+
+> **Confidentiality.** The screenplay pack is Kuku's content: no script files are in this repo, the scripts were
+> never sent to a free-tier LLM, and the raw outputs quote only the single hook/ending line needed to review each
+> clip.
 
 Reads a microdrama screenplay ZIP and returns ranked **20–60 s promo clips** (episode, start/end, hook,
 cliffhanger, why-it-works), plus an **editor pack** a video editor can use directly (clip sheet, briefs, EDL,
@@ -44,7 +49,8 @@ streamlit run app.py                                         # UI at http://loca
 macOS/Linux: `source .venv/bin/activate` and `/` paths.
 
 Input can be a ZIP, a folder of `.txt` episodes or a single episode `.txt` (the app accepts a ZIP or `.txt` files).
-CLI options: `--llm none|gemini|groq|anthropic|openai`, `--model`, `--editor-top 20` (0 = no editor pack),
+CLI options: `--llm none|gemini|groq|anthropic|openai|custom`, `--model`, `--base-url` (any OpenAI-compatible
+endpoint, e.g. `--llm custom --base-url https://host/v1 --model NAME`, key in `LLM_API_KEY`), `--editor-top 20` (0 = no editor pack),
 `--fps 30`, `--video-dir videos`, `--video-ext .mp4`.
 
 ## Outputs
@@ -52,7 +58,7 @@ CLI options: `--llm none|gemini|groq|anthropic|openai`, `--model`, `--editor-top
 | file | content |
 |---|---|
 | `promos.json` | run meta + every kept promo (segments in seconds and `MM:SS.ss`, rule scores, LLM scores, spoiler risk, flags, reasons) + cold-open promos |
-| `promos.csv` | one row per promo; `segments` as `ep:MM:SS.ss-MM:SS.ss; …` |
+| `promos.csv` | one row per promo; `segments` as `ep:MM:SS.ss-MM:SS.ss; …`; `why` is one line, `why_detail` lists every rule that fired |
 | `cold_open_promos.csv` | two-segment promos (teaser line + main clip) |
 | `run_meta.json` | provider, model, timestamp, counts, validator pass rate, all parse warnings |
 | `editor_pack/` | clip sheet, briefs, EDL, cut scripts (see below) |
