@@ -16,6 +16,10 @@ def main(argv=None):
     ap.add_argument("--out", default=None, help="output dir (default outputs/ or outputs/llm_<provider>/)")
     ap.add_argument("--llm", default="none", choices=["none", "gemini", "groq", "anthropic", "openai"])
     ap.add_argument("--model", default=None, help="override provider model name")
+    ap.add_argument("--editor-top", type=int, default=20, help="promos in the editor pack (0 = skip)")
+    ap.add_argument("--fps", type=int, default=30, help="frame rate for EDL/clip-sheet timecodes")
+    ap.add_argument("--video-dir", default="videos", help="folder with episode videos (for cut scripts)")
+    ap.add_argument("--video-ext", default=".mp4")
     a = ap.parse_args(argv)
     out = a.out or ("outputs" if a.llm == "none" else os.path.join("outputs", f"llm_{a.llm}"))
 
@@ -32,6 +36,11 @@ def main(argv=None):
     print(file=sys.stderr)
     res.meta["elapsed_s"] = round(time.time() - t0, 1)
     paths = write_all(out, res.promos, res.cold_opens, res.meta)
+    if a.editor_top:
+        from promofinder import editor
+        files = editor.build(res.promos, res.cold_opens, res.episodes, top=a.editor_top, fps=a.fps,
+                             video_dir=a.video_dir, ext=a.video_ext)
+        paths += editor.write(os.path.join(out, "editor_pack"), files)
 
     m = res.meta
     nwarn = sum(len(e.warnings) for e in res.episodes) + len(res.warnings)

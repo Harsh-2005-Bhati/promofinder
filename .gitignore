@@ -1,0 +1,10 @@
+data/
+*.zip
+!sample_data/*.zip
+__pycache__/
+.pytest_cache/
+.streamlit/secrets.toml
+.env
+outputs/cache/
+outputs/editor_pack/
+.venv/

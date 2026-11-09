@@ -42,6 +42,9 @@ with st.sidebar:
     provider_name = st.selectbox("LLM judge", PROVIDERS, index=0,
                                  help="'none' = rule-based only. LLMs only re-score/adjust by block index.")
     key = ""
+    if provider_name == "gemini":
+        st.caption("⚠️ Gemini *free tier* inputs may be used by Google to improve its products. Don't send "
+                   "confidential scripts on a free key; use the synthetic sample or a paid key.")
     if provider_name != "none":
         key = st.text_input(f"{provider_name} API key (session only)", type="password",
                             help="Leave blank to use env var / st.secrets")
@@ -187,7 +190,7 @@ with t1:
     df = pd.DataFrame([promo_row(p) for p in view[:n]])
     if not df.empty:
         st.dataframe(df[["rank", "id", "segments", "duration", "total", "hook", "cliffhanger", "standalone",
-                         "validator_pass", "status", "hook_text", "cliffhanger_text"]],
+                         "spoiler_risk", "validator_pass", "status", "hook_text", "cliffhanger_text"]],
                      width="stretch", hide_index=True)
     st.subheader("Top 10 to post first")
     for p in res.promos[:10]:
@@ -246,3 +249,18 @@ with t5:
     st.download_button("cold_open_promos.csv", to_csv(res.cold_opens), "cold_open_promos.csv", "text/csv")
     st.download_button("run_meta.json", json.dumps(m, indent=2, default=str), "run_meta.json", "application/json")
     st.download_button("review_log.csv", review_csv(ss.review_log), "review_log.csv", "text/csv")
+    st.divider()
+    st.subheader("Editor pack")
+    st.caption("Clip sheet, one-page briefs, EDL (Premiere/Resolve import) and ffmpeg cut scripts for the top promos. "
+               "Assumes each episode video has the same name as its script file.")
+    e1, e2, e3, e4 = st.columns(4)
+    ep_top = e1.number_input("Top N promos", 1, max(1, len(res.promos)), min(20, max(1, len(res.promos))))
+    ep_fps = e2.selectbox("Frame rate", [30, 25, 24, 60], index=0)
+    ep_dir = e3.text_input("Video folder", "videos")
+    ep_ext = e4.selectbox("Video extension", [".mp4", ".mov", ".mkv"], index=0)
+    from promofinder import editor
+    pack = editor.build(res.promos, res.cold_opens, res.episodes, top=int(ep_top), fps=int(ep_fps),
+                        video_dir=ep_dir, ext=ep_ext)
+    st.download_button("editor_pack.zip", editor.as_zip(pack), "editor_pack.zip", "application/zip")
+    with st.expander("Preview briefs.md"):
+        st.markdown(pack["briefs.md"][:20000])
