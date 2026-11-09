@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-11-08T11:25:13",
+  "provider": "none",
+  "model": null,
+  "weights": {
+    "hook": 0.35,
+    "cliffhanger": 0.35,
+    "standalone": 0.2,
+    "density": 0.1
+  },
+  "episodes_parsed": 50,
+  "blocks": 3727,
+  "total_runtime_s": 6162.62,
+  "candidates_generated": 16167,
+  "promos_kept": 201,
+  "cold_open_promos": 41,
+  "validator_pass": 201,
+  "validator_pass_rate": 1.0,
+  "cold_open_pass_rate": 1.0,
+  "global_warnings": [],
+  "episode_warnings": {
+    "3": [
+      "1 overlapping dialogue line pair(s)"
+    ],
+    "4": [
+      "1 block(s) out of order in file; sorted by start time"
+    ],
+    "5": [
+      "1 overlapping dialogue line pair(s)"
+    ],
+    "6": [
+      "1 overlapping dialogue line pair(s)"
+    ],
+    "12": [
+      "1 block(s) out of order in file; sorted by start time"
+    ],
+    "18": [
+      "1 overlapping dialogue line pair(s)"
+    ],
+    "20": [
+      "1 block(s) out of order in file; sorted by start time",
+      "1 overlapping dialogue line pair(s)"
+    ],
+    "21": [
+      "2 block(s) out of order in file; sorted by start time",
+      "1 overlapping dialogue line pair(s)"
+    ],
+    "28": [
+      "2 overlapping dialogue line pair(s)"
+    ],
+    "32": [
+      "2 block(s) out of order in file; sorted by start time",
+      "1 overlapping dialogue line pair(s)"
+    ],
+    "46": [
+      "1 block(s) out of order in file; sorted by start time",
+      "1 overlapping dialogue line pair(s)"
+    ]
+  },
+  "llm": null,
+  "elapsed_s": 25.9
+}
